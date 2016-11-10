@@ -8,141 +8,141 @@ namespace RGR_II.Classes
 {
     class ExpertSystemLogic
     {
-        struct SUBNODE_ONE
+        public struct SUBNODE_ONE
         {
-            byte FirstFlag;
-            byte SecondFlag;
+            public byte FF;
+            public byte FS;
 
-            public SUBNODE_ONE SetStructFlag(SUBNODE_ONE Struct)
+            public SUBNODE_ONE Copy(SUBNODE_ONE S)
             {
-                FirstFlag = Struct.FirstFlag;
-                SecondFlag = Struct.SecondFlag;
+                FF = S.FF;
+                FS = S.FS;
                 return this;
             }
 
             public SUBNODE_ONE Clear()
             {
-                FirstFlag = 0;
-                SecondFlag = 0;
+                FF = 0;
+                FS = 0;
                 return this;
             }
 
             public void Set(byte One = 0, byte Two = 0)
             {
-                FirstFlag = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
-                SecondFlag = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                FS = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
             }
             
         };
 
-        struct SUBNODE_TWO
+        public struct SUBNODE_TWO
         {
-            byte FirstFlag;
-            byte SecondFlag;
-            byte ThirdFlag;
+            public byte FF;
+            public byte FS;
+            public byte FT;
 
-            public SUBNODE_TWO SetStructFlag(SUBNODE_TWO Struct)
+            public SUBNODE_TWO Copy(SUBNODE_TWO S)
             {
-                FirstFlag = Struct.FirstFlag;
-                SecondFlag = Struct.SecondFlag;
-                ThirdFlag = Struct.ThirdFlag;
+                FF = S.FF;
+                FS = S.FS;
+                FT = S.FT;
                 return this;
             }
 
             public SUBNODE_TWO Clear()
             {
-                FirstFlag = 0;
-                SecondFlag = 0;
-                ThirdFlag = 0;
+                FF = 0;
+                FS = 0;
+                FT = 0;
                 return this;
             }
 
             public void Set(byte One = 0, byte Two = 0, byte Three = 0)
             {
-                FirstFlag = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
-                SecondFlag = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
-                ThirdFlag = (Three < 0) ? (((Three == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                FS = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                FT = (Three < 0) ? (((Three == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
             }
         }
 
         public struct NODE
-        { 
-            SUBNODE_TWO AktivniiOtdih;//3 - byte
-            SUBNODE_ONE OtdihVKompanii;//5 - byte
-            byte Prirodu;//6 - byte
-            byte OtdihNaPrirode;//8 - byte
-            SUBNODE_ONE Arhitectura;//11 - byte
-            SUBNODE_TWO BolshieGoroda;//13 - byte
-            SUBNODE_ONE MalenkieGoroda;//14 - byte
-            byte Dostoprimechatelnosti;//16 - byte
-            SUBNODE_ONE VoennaaTematika;//19 - byte
-            SUBNODE_TWO Reki;//22 - byte
-            SUBNODE_TWO Gori;//25 - byte
-            SUBNODE_TWO SostoanieZdorovia;//28 - byte
-            SUBNODE_ONE Temp_Hight;//30 - byte
-            SUBNODE_ONE Temp_Low;//32 - byte
-            byte Temp_Srednaa;//33 - byte
+        {
+            public SUBNODE_TWO AktivniiOtdih;//3 - byte
+            public SUBNODE_ONE OtdihVKompanii;//5 - byte
+            public byte Prirodu;//6 - byte
+            public byte OtdihNaPrirode;//8 - byte
+            public SUBNODE_ONE Arhitectura;//11 - byte
+            public SUBNODE_TWO BolshieGoroda;//13 - byte
+            public SUBNODE_ONE MalenkieGoroda;//14 - byte
+            public byte Dostoprimechatelnosti;//16 - byte
+            public SUBNODE_ONE VoennaaTematika;//19 - byte
+            public SUBNODE_TWO Reki;//22 - byte
+            public SUBNODE_TWO Gori;//25 - byte
+            public SUBNODE_TWO SostoanieZdorovia;//28 - byte
+            public SUBNODE_ONE Temp_Hight;//30 - byte
+            public SUBNODE_ONE Temp_Low;//32 - byte
+            public byte Temp_Srednaa;//33 - byte
             /*
              * SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
-             *                      byte FirstFlag;     ---Предпочитает активный отдых
-             *                      byte SecondFlag;    ---Любит смену обстановки
-             *                      byte ThirdFlag;     ---Экстримальный отдых
+             *                      byte FF;            ---Предпочитает активный отдых
+             *                      byte FS;            ---Любит смену обстановки
+             *                      byte FT;            ---Экстримальный отдых
              * SUBNODE_ONE OtdihVKompanii;              -Отдых в компании
-             *                      byte FirstFlag;     ---Большая компания
-             *                      byte SecondFlag;    ---Маленькая компания
+             *                      byte FF;            ---Большая компания
+             *                      byte FS;            ---Маленькая компания
              * byte Prirodu;                            -Любит природу
              * byte OtdihNaPrirode;                     -Любит отдых на природе
              * SUBNODE_ONE Arhitectura;                 -Любит архитектуру
-             *                      byte FirstFlag;     ---Исторические строения
-             *                      byte SecondFlag;    ---Современные строения
+             *                      byte FF;            ---Исторические строения
+             *                      byte FS;            ---Современные строения
              * SUBNODE_TWO BolshieGoroda;               -Любит большие города
-             *                      byte FirstFlag;     ---Промышленные города
-             *                      byte SecondFlag;    ---Столицы
-             *                      byte ThirdFlag;     ---Обласные центры
+             *                      byte FF;            ---Промышленные города
+             *                      byte FS;            ---Столицы
+             *                      byte FT;            ---Обласные центры
              * SUBNODE_ONE MalenkieGoroda;              -Любит маленькие города
-             *                      byte FirstFlag;     ---Провинцыальные города
-             *                      byte SecondFlag;    ---Села
+             *                      byte FF;            ---Провинцыальные города
+             *                      byte FS;            ---Села
              * byte Dostoprimechatelnosti;              -Любит достопримечательности
              * SUBNODE_ONE VoennaaTematika;             -Любит военную тематику
-             *                      byte FirstFlag;     ---Парки военной техники
-             *                      byte SecondFlag;    ---Музеи славы
+             *                      byte FF;            ---Музей военной техники
+             *                      byte FS;            ---Парки славы
              * SUBNODE_TWO Reki;                        -Любит реки
-             *                      byte FirstFlag;     ---Моря
-             *                      byte SecondFlag;    ---Реки
-             *                      byte ThirdFlag;     ---Озера
+             *                      byte FF;            ---Моря
+             *                      byte FS;            ---Реки
+             *                      byte FT;            ---Озера
              * SUBNODE_TWO Gori;                        -Любит горы
-             *                      byte FirstFlag;     ---Высокие горы
-             *                      byte SecondFlag;    ---холмы
-             *                      byte ThirdFlag;     ---с возможностью подьёма
+             *                      byte FF;            ---Высокие горы
+             *                      byte FS;            ---холмы
+             *                      byte FT;            ---с возможностью подьёма
              * SUBNODE_TWO SostoanieZdorovia;           -Состояние здоровья
-             *                      byte FirstFlag;     ---Хорошее
-             *                      byte SecondFlag;    ---Среднее
-             *                      byte ThirdFlag;     ---Тяжелое
+             *                      byte FF;            ---Хорошее
+             *                      byte FS;            ---Среднее
+             *                      byte FT;            ---Тяжелое
              * SUBNODE_ONE Temp_Hight;                  -Любит высокую температуру
-             *                      byte FirstFlag;     --- 30+
-             *                      byte SecondFlag;    --- 25+ - 30+
+             *                      byte FF;            --- 30+
+             *                      byte FS;            --- 25+ - 30+
              * SUBNODE_ONE Temp_Low;                    -Любит низкую температуру
-             *                      byte FirstFlag;     --- -10 - 15+
-             *                      byte SecondFlag;    --- -30 - -10
+             *                      byte FF;            --- -10 - 15+
+             *                      byte FS;            --- -30 - -10
              * byte Temp_Srednaa;                       -Любит среднюю температуру
              */
-            public NODE SetStructFlag(NODE Struct)
+            public NODE Copy(NODE S)
             {
-                AktivniiOtdih = Struct.AktivniiOtdih;
-                OtdihVKompanii = Struct.OtdihVKompanii;
-                Prirodu = Struct.Prirodu;
-                Arhitectura = Struct.Arhitectura;
-                BolshieGoroda = Struct.BolshieGoroda;
-                MalenkieGoroda = Struct.MalenkieGoroda;
-                Dostoprimechatelnosti = Struct.Dostoprimechatelnosti;
-                VoennaaTematika = Struct.VoennaaTematika;
-                Reki = Struct.Reki;
-                Gori = Struct.Gori;
-                SostoanieZdorovia = Struct.SostoanieZdorovia;
-                OtdihNaPrirode = Struct.OtdihNaPrirode;
-                Temp_Hight = Struct.Temp_Hight;
-                Temp_Low = Struct.Temp_Low;
-                Temp_Srednaa = Struct.Temp_Srednaa;
+                AktivniiOtdih = S.AktivniiOtdih;
+                OtdihVKompanii = S.OtdihVKompanii;
+                Prirodu = S.Prirodu;
+                Arhitectura = S.Arhitectura;
+                BolshieGoroda = S.BolshieGoroda;
+                MalenkieGoroda = S.MalenkieGoroda;
+                Dostoprimechatelnosti = S.Dostoprimechatelnosti;
+                VoennaaTematika = S.VoennaaTematika;
+                Reki = S.Reki;
+                Gori = S.Gori;
+                SostoanieZdorovia = S.SostoanieZdorovia;
+                OtdihNaPrirode = S.OtdihNaPrirode;
+                Temp_Hight = S.Temp_Hight;
+                Temp_Low = S.Temp_Low;
+                Temp_Srednaa = S.Temp_Srednaa;
                 return this;
             }
 
@@ -167,81 +167,107 @@ namespace RGR_II.Classes
             }
         };
 
-        public static bool Rule_Sanatorii_V_Gorah(NODE Struct)
+        public static bool Rule_Sanatorii_V_Gorah(NODE S)
         {
-            if ()
+            if(S.SostoanieZdorovia.FT !=0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS !=0 || S.AktivniiOtdih.FT != 0))
             {
-
+                return false;
+            }
+            if(S.Gori.FF != 0  || S.Gori.FS != 0  || S.Gori.FT != 0)
+            {
+                return false;
             }
             return true;
         }
 
-        public static bool Rule_Sanatorii_U_Reki(NODE Struct)
+        public static bool Rule_Sanatorii_U_Reki(NODE S)
+        {
+            if (S.SostoanieZdorovia.FT != 0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS != 0 || S.AktivniiOtdih.FT != 0))
+            {
+                return false;
+            }
+            if (S.Reki.FF != 0 || S.Reki.FS != 0 || S.Reki.FT != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Rule_Sanatorii(NODE S)
+        {
+            if (S.SostoanieZdorovia.FT != 0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS != 0 || S.AktivniiOtdih.FT != 0))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Rule_Otdih_V_Palatkah(NODE S)
+        {
+
+            return true;
+        }
+
+        public static bool Rule_Voennii_Muzei(NODE S)
+        {
+            if(S.VoennaaTematika.FF == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool Rule_Park_Slavi(NODE S)
+        {
+            if(S.VoennaaTematika.FS == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool Rule_Gornolijnii_Kurort(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Sanatorii(NODE Struct)
+        public static bool Rule_Poezdka_Na_More(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Otdih_V_Palatkah(NODE Struct)
+        public static bool Rule_Poezdka_Na_Ozero(NODE S)
         {
             return true;
         }
 
-        public static bool RuleSanatoriiVGorah(NODE Struct)
+        public static bool Rule_Poezdka_Na_Reku(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Voennii_Muzei(NODE Struct)
+        public static bool Rule_Dayving(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Park_Slavi(NODE Struct)
+        public static bool Rule_Alpinizm(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Gornolijnii_Kurort(NODE Struct)
+        public static bool Rule_Excursia_V_Gorod(NODE S)
         {
             return true;
         }
 
-        public static bool Rule_Poezdka_Na_More(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Poezdka_Na_Ozero(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Poezdka_Na_Reku(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Dayving(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Alpinizm(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Excursia_V_Gorod(NODE Struct)
-        {
-            return true;
-        }
-
-        public static bool Rule_Excursia_V_Sela(NODE Struct)
+        public static bool Rule_Excursia_V_Sela(NODE S)
         {
             return true;
         }
