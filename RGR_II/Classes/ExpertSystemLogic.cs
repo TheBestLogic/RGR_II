@@ -10,58 +10,58 @@ namespace RGR_II.Classes
     {
         struct SUBNODE_ONE
         {
-            bool FirstFlag;
-            bool SecondFlag;
+            byte FirstFlag;
+            byte SecondFlag;
 
             public SUBNODE_ONE SetStructFlag(SUBNODE_ONE Struct)
             {
-                this.FirstFlag = Struct.FirstFlag;
-                this.SecondFlag = Struct.SecondFlag;
+                FirstFlag = Struct.FirstFlag;
+                SecondFlag = Struct.SecondFlag;
                 return this;
             }
 
             public SUBNODE_ONE Clear()
             {
-                this.FirstFlag = false;
-                this.SecondFlag = false;
+                FirstFlag = 0;
+                SecondFlag = 0;
                 return this;
             }
 
-            public void Set(bool One = false, bool Two = false)
+            public void Set(byte One = 0, byte Two = 0)
             {
-                this.FirstFlag = (One == true) ? (true) : (false);
-                this.SecondFlag = (Two == true) ? (true) : (false);
+                FirstFlag = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                SecondFlag = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
             }
             
         };
 
         struct SUBNODE_TWO
         {
-            bool FirstFlag;
-            bool SecondFlag;
-            bool ThirdFlag;
+            byte FirstFlag;
+            byte SecondFlag;
+            byte ThirdFlag;
 
             public SUBNODE_TWO SetStructFlag(SUBNODE_TWO Struct)
             {
-                this.FirstFlag = Struct.FirstFlag;
-                this.SecondFlag = Struct.SecondFlag;
-                this.ThirdFlag = Struct.ThirdFlag;
+                FirstFlag = Struct.FirstFlag;
+                SecondFlag = Struct.SecondFlag;
+                ThirdFlag = Struct.ThirdFlag;
                 return this;
             }
 
             public SUBNODE_TWO Clear()
             {
-                this.FirstFlag = false;
-                this.SecondFlag = false;
-                this.ThirdFlag = false;
+                FirstFlag = 0;
+                SecondFlag = 0;
+                ThirdFlag = 0;
                 return this;
             }
 
-            public void Set(bool One = false, bool Two = false, bool Three = false)
+            public void Set(byte One = 0, byte Two = 0, byte Three = 0)
             {
-                this.FirstFlag = (One == true) ? (true) : (false);
-                this.SecondFlag = (Two == true) ? (true) : (false);
-                this.ThirdFlag = (Three == true) ? (true) : (false);
+                FirstFlag = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                SecondFlag = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+                ThirdFlag = (Three < 0) ? (((Three == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
             }
         }
 
@@ -69,57 +69,57 @@ namespace RGR_II.Classes
         {
             SUBNODE_ONE AktivniiOtdih;
             SUBNODE_ONE OtdihVKompanii;
-            bool Prirodu;
+            byte Prirodu;
             SUBNODE_ONE Arhitectura;
             SUBNODE_TWO BolshieGoroda;
             SUBNODE_ONE MalenkieGoroda;
-            bool Dostoprimechatelnosti;
+            byte Dostoprimechatelnosti;
             SUBNODE_ONE VoennaaTematika;
             SUBNODE_TWO Reki;
             SUBNODE_TWO Gori;
             SUBNODE_TWO SostoanieZdorovia;
-            bool OtdihNaPrirode;
+            byte OtdihNaPrirode;
             SUBNODE_ONE Temp_Hight;
             SUBNODE_ONE Temp_Low;
-            bool Temp_Srednaa;
+            byte Temp_Srednaa;
 
             public NODE SetStructFlag(NODE Struct)
             {
-                this.AktivniiOtdih = Struct.AktivniiOtdih;
-                this.OtdihVKompanii = Struct.OtdihVKompanii;
-                this.Prirodu = Struct.Prirodu;
-                this.Arhitectura = Struct.Arhitectura;
-                this.BolshieGoroda = Struct.BolshieGoroda;
-                this.MalenkieGoroda = Struct.MalenkieGoroda;
-                this.Dostoprimechatelnosti = Struct.Dostoprimechatelnosti;
-                this.VoennaaTematika = Struct.VoennaaTematika;
-                this.Reki = Struct.Reki;
-                this.Gori = Struct.Gori;
-                this.SostoanieZdorovia = Struct.SostoanieZdorovia;
-                this.OtdihNaPrirode = Struct.OtdihNaPrirode;
-                this.Temp_Hight = Struct.Temp_Hight;
-                this.Temp_Low = Struct.Temp_Low;
-                this.Temp_Srednaa = Struct.Temp_Srednaa;
+                AktivniiOtdih = Struct.AktivniiOtdih;
+                OtdihVKompanii = Struct.OtdihVKompanii;
+                Prirodu = Struct.Prirodu;
+                Arhitectura = Struct.Arhitectura;
+                BolshieGoroda = Struct.BolshieGoroda;
+                MalenkieGoroda = Struct.MalenkieGoroda;
+                Dostoprimechatelnosti = Struct.Dostoprimechatelnosti;
+                VoennaaTematika = Struct.VoennaaTematika;
+                Reki = Struct.Reki;
+                Gori = Struct.Gori;
+                SostoanieZdorovia = Struct.SostoanieZdorovia;
+                OtdihNaPrirode = Struct.OtdihNaPrirode;
+                Temp_Hight = Struct.Temp_Hight;
+                Temp_Low = Struct.Temp_Low;
+                Temp_Srednaa = Struct.Temp_Srednaa;
                 return this;
             }
 
             public NODE Clear()
             {
-                this.AktivniiOtdih = this.AktivniiOtdih.Clear();
-                this.OtdihVKompanii = this.OtdihVKompanii.Clear();
-                this.Prirodu = false;
-                this.Arhitectura = this.Arhitectura.Clear();
-                this.BolshieGoroda = this.BolshieGoroda.Clear();
-                this.MalenkieGoroda = this.MalenkieGoroda.Clear();
-                this.Dostoprimechatelnosti = false;
-                this.VoennaaTematika = this.VoennaaTematika.Clear();
-                this.Reki = this.Reki.Clear();
-                this.Gori = this.Gori.Clear();
-                this.SostoanieZdorovia = this.SostoanieZdorovia.Clear();
-                this.OtdihNaPrirode = false;
-                this.Temp_Hight = this.Temp_Hight.Clear();
-                this.Temp_Low = this.Temp_Low.Clear();
-                this.Temp_Srednaa = false;
+                AktivniiOtdih = AktivniiOtdih.Clear();
+                OtdihVKompanii = OtdihVKompanii.Clear();
+                Prirodu = 0;
+                Arhitectura = Arhitectura.Clear();
+                BolshieGoroda = BolshieGoroda.Clear();
+                MalenkieGoroda = MalenkieGoroda.Clear();
+                Dostoprimechatelnosti = 0;
+                VoennaaTematika = VoennaaTematika.Clear();
+                Reki = Reki.Clear();
+                Gori = Gori.Clear();
+                SostoanieZdorovia = SostoanieZdorovia.Clear();
+                OtdihNaPrirode = 0;
+                Temp_Hight = Temp_Hight.Clear();
+                Temp_Low = Temp_Low.Clear();
+                Temp_Srednaa = 0;
                 return this;
             }
         };
