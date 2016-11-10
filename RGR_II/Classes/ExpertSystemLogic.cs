@@ -354,90 +354,85 @@ namespace RGR_II.Classes
                 }
                 return false;
             }
-            /*
+            
             public bool Rule_Excursia_V_Gorod()
             {
-                if ()
+                if (OtdihVKompanii.CheckOR_2()==true)
                 {
                     return false;
                 }
-                if()
+                if((Arhitectura.CheckOR_1()==true) && (BolshieGoroda.CheckOR_1()==true || MalenkieGoroda.FF ==1))
                 {
                     return true;
                 }
                 return false;
-            }*/
+            }
+
+            public bool Rule_Excursia_V_Sela()
+            {
+                if (OtdihVKompanii.CheckOR_2() == true)
+                {
+                    return false;
+                }
+                if ( Arhitectura.CheckOR_1() == true &&  MalenkieGoroda.FS == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Goroda_S_Nasled()
+            {
+                if ((Dostoprimechatelnosti == 1 || Arhitectura.CheckOR_1() == true) && (BolshieGoroda.CheckOR_1() == true || MalenkieGoroda.FF == 1))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Mesta_S_B_Nasled()
+            {
+                if ((Dostoprimechatelnosti == 1 || Arhitectura.CheckOR_1() == true) && (BolshieGoroda.CheckOR_1() == true || MalenkieGoroda.CheckOR_1() == true || Prirodu == 1))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Zapovednik()
+            {
+                if (SostoanieZdorovia.FT != 0)
+                {
+                    return false;
+                }
+                if ((Dostoprimechatelnosti == 1 ) && ( Prirodu == 1) || OtdihNaPrirode ==1 || AktivniiOtdih.CheckOR_1()==true)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Park()
+            { 
+                if (AktivniiOtdih.CheckOR_2()==true && (Prirodu == 1 || OtdihNaPrirode == 1 || MalenkieGoroda.CheckOR_1()==true || BolshieGoroda.CheckOR_1()==true))
+                {
+                    return true;
+                }
+                return false;
+            }
         };
 
-        
 
-        
 
-        
+
+
+
+
+
         /*
-        public static bool Rule_Excursia_V_Sela(NODE S)
-        {
-            if ()
-            {
-                return false;
-            }
-            if ()
-            {
-                return true;
-            }
-            return false;
-        }
 
-        public static bool Rule_Goroda_S_Nasled(NODE S)
-        {
-            if ()
-            {
-                return false;
-            }
-            if ()
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
-        public static bool Rule_Mesta_S_B_Nasled(NODE S)
-        {
-            if ()
-            {
-                return false;
-            }
-            if ()
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool Rule_Zapovednik(NODE S)
-        {
-            if ()
-            {
-                return false;
-            }
-            if ()
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool Rule_Park(NODE S)
-        {
-            if ()
-            {
-                return false;
-            }
-            if ()
-            {
-                return true;
-            }
-            return false;
-        }*/
+        */
     }
 }
