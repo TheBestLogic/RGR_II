@@ -65,24 +65,66 @@ namespace RGR_II.Classes
             }
         }
 
-        struct NODE
-        {
-            SUBNODE_ONE AktivniiOtdih;
-            SUBNODE_ONE OtdihVKompanii;
-            byte Prirodu;
-            SUBNODE_ONE Arhitectura;
-            SUBNODE_TWO BolshieGoroda;
-            SUBNODE_ONE MalenkieGoroda;
-            byte Dostoprimechatelnosti;
-            SUBNODE_ONE VoennaaTematika;
-            SUBNODE_TWO Reki;
-            SUBNODE_TWO Gori;
-            SUBNODE_TWO SostoanieZdorovia;
-            byte OtdihNaPrirode;
-            SUBNODE_ONE Temp_Hight;
-            SUBNODE_ONE Temp_Low;
-            byte Temp_Srednaa;
-
+        public struct NODE
+        {//0 - byte
+            SUBNODE_ONE AktivniiOtdih;//2 - byte
+            SUBNODE_ONE OtdihVKompanii;//4 - byte
+            byte Prirodu;//5 - byte
+            byte OtdihNaPrirode;//7 - byte
+            SUBNODE_ONE Arhitectura;//10 - byte
+            SUBNODE_TWO BolshieGoroda;//12 - byte
+            SUBNODE_ONE MalenkieGoroda;//13 - byte
+            byte Dostoprimechatelnosti;//15 - byte
+            SUBNODE_ONE VoennaaTematika;//18 - byte
+            SUBNODE_TWO Reki;//21 - byte
+            SUBNODE_TWO Gori;//24 - byte
+            SUBNODE_TWO SostoanieZdorovia;//25 - byte
+            SUBNODE_ONE Temp_Hight;//27 - byte
+            SUBNODE_ONE Temp_Low;//29 - byte
+            byte Temp_Srednaa;//30 - byte
+            /*
+             * SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
+             *                      byte FirstFlag;     ---Предпочитает активный отдых
+             *                      byte SecondFlag;    ---Любит смену обстановки
+             * SUBNODE_ONE OtdihVKompanii;              -Отдых в компании
+             *                      byte FirstFlag;     ---Большая компания
+             *                      byte SecondFlag;    ---Маленькая компания
+             * byte Prirodu;                            -Любит природу
+             * byte OtdihNaPrirode;                     -Любит отдых на природе
+             * SUBNODE_ONE Arhitectura;                 -Любит архитектуру
+             *                      byte FirstFlag;     ---Исторические строения
+             *                      byte SecondFlag;    ---Современные строения
+             * SUBNODE_TWO BolshieGoroda;               -Любит большие города
+             *                      byte FirstFlag;     ---Промышленные города
+             *                      byte SecondFlag;    ---Столицы
+             *                      byte ThirdFlag;     ---Обласные центры
+             * SUBNODE_ONE MalenkieGoroda;              -Любит маленькие города
+             *                      byte FirstFlag;     ---Провинцыальные города
+             *                      byte SecondFlag;    ---Села
+             * byte Dostoprimechatelnosti;              -Любит достопримечательности
+             * SUBNODE_ONE VoennaaTematika;             -Любит военную тематику
+             *                      byte FirstFlag;     ---Парки военной техники
+             *                      byte SecondFlag;    ---Музеи славы
+             * SUBNODE_TWO Reki;                        -Любит реки
+             *                      byte FirstFlag;     ---Моря
+             *                      byte SecondFlag;    ---Реки
+             *                      byte ThirdFlag;     ---Озера
+             * SUBNODE_TWO Gori;                        -Любит горы
+             *                      byte FirstFlag;     ---Высокие горы
+             *                      byte SecondFlag;    ---холмы
+             *                      byte ThirdFlag;     ---с возможностью подьёма
+             * SUBNODE_TWO SostoanieZdorovia;           -Состояние здоровья
+             *                      byte FirstFlag;     ---Хорошее
+             *                      byte SecondFlag;    ---Среднее
+             *                      byte ThirdFlag;     ---Тяжелое
+             * SUBNODE_ONE Temp_Hight;                  -Любит высокую температуру
+             *                      byte FirstFlag;     --- 30+
+             *                      byte SecondFlag;    --- 25+ - 30+
+             * SUBNODE_ONE Temp_Low;                    -Любит низкую температуру
+             *                      byte FirstFlag;     --- -10 - 15+
+             *                      byte SecondFlag;    --- -30 - -10
+             * byte Temp_Srednaa;                       -Любит среднюю температуру
+             */
             public NODE SetStructFlag(NODE Struct)
             {
                 AktivniiOtdih = Struct.AktivniiOtdih;
