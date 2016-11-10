@@ -32,7 +32,26 @@ namespace RGR_II.Classes
                 FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
                 FS = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
             }
-            
+
+            public bool CheckOR_0()
+            {
+                return ((FF == 0) ? (true) : (false)) | ((FS == 0) ? (true) : (false));
+            }
+
+            public bool CheckOR_2()
+            {
+                return ((FF == 2) ? (true) : (false)) | ((FS == 2) ? (true) : (false));
+            }
+
+            public bool CheckOR_1()
+            {
+                return ((FF == 1) ? (true) : (false)) | ((FS == 1) ? (true) : (false));
+            }
+
+            public bool CheckXOR(byte b)
+            {
+                return ((FF ^ b + FS ^ b) == 0) ? (true) : (false);
+            }
         };
 
         public struct SUBNODE_TWO
@@ -62,6 +81,26 @@ namespace RGR_II.Classes
                 FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
                 FS = (Two < 0) ? (((Two == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
                 FT = (Three < 0) ? (((Three == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
+            }
+
+            public bool CheckOR_0()
+            {
+                return ((FF == 0) ? (true) : (false)) | ((FS == 0) ? (true) : (false)) | ((FT == 0) ? (true) : (false));
+            }
+
+            public bool CheckOR_2()
+            {
+                return ((FF == 2) ? (true) : (false)) | ((FS == 2) ? (true) : (false)) | ((FT == 2) ? (true) : (false));
+            }
+
+            public bool CheckOR_1()
+            {
+                return ((FF == 1) ? (true) : (false)) | ((FS == 1) ? (true) : (false)) | ((FT == 1) ? (true) : (false));
+            }
+
+            public bool CheckXOR(byte b)
+            {
+                return ((FF^b+FS^b+FT^b)==0) ? (true) : (false);
             }
         }
 
@@ -124,7 +163,7 @@ namespace RGR_II.Classes
              * SUBNODE_ONE Temp_Low;                    -Любит низкую температуру
              *                      byte FF;            --- -10 - 15+
              *                      byte FS;            --- -30 - -10
-             * byte Temp_Srednaa;                       -Любит среднюю температуру
+             * byte Temp_Srednaa;                       -Любит среднюю температуру 15-25
              */
             public NODE Copy(NODE S)
             {
@@ -165,111 +204,240 @@ namespace RGR_II.Classes
                 Temp_Srednaa = 0;
                 return this;
             }
+
+            public bool Rule_Sanatorii_V_Gorah()
+            {
+                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
+                {
+                    return false;
+                }
+                if (Gori.FF != 0 || Gori.FS != 0 || Gori.FT != 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            public bool Rule_Sanatorii_U_Reki()
+            {
+                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
+                {
+                    return false;
+                }
+                if (Reki.FF != 0 || Reki.FS != 0 || Reki.FT != 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            public bool Rule_Sanatorii()
+            {
+                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            public bool Rule_Otdih_V_Palatkah()
+            {
+                if (Temp_Hight.CheckOR_2() == true || SostoanieZdorovia.FT != 0)
+                {
+                    return false;
+                }
+                if ((Prirodu == 1 || OtdihNaPrirode == 1) && OtdihVKompanii.CheckOR_1() == true)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Voennii_Muzei()
+            {
+                if (VoennaaTematika.FF == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool Rule_Park_Slavi()
+            {
+                if (VoennaaTematika.FS == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool Rule_Gornolijnii_Kurort()
+            {
+                if (Temp_Low.CheckOR_2() == true || SostoanieZdorovia.FT != 1)
+                {
+                    return false;
+                }
+                if (Gori.CheckOR_1() == true && Temp_Low.CheckOR_1() == true && AktivniiOtdih.CheckOR_1() == true)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Poezdka_Na_More()
+            {
+                if (Reki.FF == 2)
+                {
+                    return false;
+                }
+                if (Reki.FF == 1 && AktivniiOtdih.FS == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Poezdka_Na_Ozero()
+            {
+                if (Reki.FT == 2)
+                {
+                    return false;
+                }
+                if (Reki.FT == 1 && AktivniiOtdih.FS == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Poezdka_Na_Reku()
+            {
+                if (Reki.FS == 2)
+                {
+                    return false;
+                }
+                if (Reki.FS == 1 && AktivniiOtdih.FS == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Dayving()
+            {
+                if (SostoanieZdorovia.FT==1)
+                {
+                    return false;
+                }
+                if (Reki.CheckOR_1()==true && AktivniiOtdih.FT == 1 && AktivniiOtdih.FF == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public bool Rule_Alpinizm()
+            {
+                if (SostoanieZdorovia.FT == 1 && ((Temp_Low.CheckOR_0()==true && Temp_Srednaa==0 && Temp_Hight.FF==1 && Temp_Hight.FS==0)|| (Temp_Low.CheckOR_2() == true && Temp_Srednaa == 2 && Temp_Hight.FF == 1 && Temp_Hight.FS == 2)))
+                {
+                    return false;
+                }
+                if (Gori.CheckOR_1() == true  && AktivniiOtdih.FT == 1 && AktivniiOtdih.FF == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+            /*
+            public bool Rule_Excursia_V_Gorod()
+            {
+                if ()
+                {
+                    return false;
+                }
+                if()
+                {
+                    return true;
+                }
+                return false;
+            }*/
         };
 
-        public static bool Rule_Sanatorii_V_Gorah(NODE S)
-        {
-            if(S.SostoanieZdorovia.FT !=0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS !=0 || S.AktivniiOtdih.FT != 0))
-            {
-                return false;
-            }
-            if(S.Gori.FF != 0  || S.Gori.FS != 0  || S.Gori.FT != 0)
-            {
-                return false;
-            }
-            return true;
-        }
+        
 
-        public static bool Rule_Sanatorii_U_Reki(NODE S)
-        {
-            if (S.SostoanieZdorovia.FT != 0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS != 0 || S.AktivniiOtdih.FT != 0))
-            {
-                return false;
-            }
-            if (S.Reki.FF != 0 || S.Reki.FS != 0 || S.Reki.FT != 0)
-            {
-                return false;
-            }
-            return true;
-        }
+        
 
-        public static bool Rule_Sanatorii(NODE S)
-        {
-            if (S.SostoanieZdorovia.FT != 0 && (S.AktivniiOtdih.FF != 0 || S.AktivniiOtdih.FS != 0 || S.AktivniiOtdih.FT != 0))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public static bool Rule_Otdih_V_Palatkah(NODE S)
-        {
-
-            return true;
-        }
-
-        public static bool Rule_Voennii_Muzei(NODE S)
-        {
-            if(S.VoennaaTematika.FF == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static bool Rule_Park_Slavi(NODE S)
-        {
-            if(S.VoennaaTematika.FS == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static bool Rule_Gornolijnii_Kurort(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Poezdka_Na_More(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Poezdka_Na_Ozero(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Poezdka_Na_Reku(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Dayving(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Alpinizm(NODE S)
-        {
-            return true;
-        }
-
-        public static bool Rule_Excursia_V_Gorod(NODE S)
-        {
-            return true;
-        }
-
+        
+        /*
         public static bool Rule_Excursia_V_Sela(NODE S)
         {
-            return true;
+            if ()
+            {
+                return false;
+            }
+            if ()
+            {
+                return true;
+            }
+            return false;
         }
+
+        public static bool Rule_Goroda_S_Nasled(NODE S)
+        {
+            if ()
+            {
+                return false;
+            }
+            if ()
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Rule_Mesta_S_B_Nasled(NODE S)
+        {
+            if ()
+            {
+                return false;
+            }
+            if ()
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Rule_Zapovednik(NODE S)
+        {
+            if ()
+            {
+                return false;
+            }
+            if ()
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Rule_Park(NODE S)
+        {
+            if ()
+            {
+                return false;
+            }
+            if ()
+            {
+                return true;
+            }
+            return false;
+        }*/
     }
 }
