@@ -66,26 +66,27 @@ namespace RGR_II.Classes
         }
 
         public struct NODE
-        {//0 - byte
-            SUBNODE_ONE AktivniiOtdih;//2 - byte
-            SUBNODE_ONE OtdihVKompanii;//4 - byte
-            byte Prirodu;//5 - byte
-            byte OtdihNaPrirode;//7 - byte
-            SUBNODE_ONE Arhitectura;//10 - byte
-            SUBNODE_TWO BolshieGoroda;//12 - byte
-            SUBNODE_ONE MalenkieGoroda;//13 - byte
-            byte Dostoprimechatelnosti;//15 - byte
-            SUBNODE_ONE VoennaaTematika;//18 - byte
-            SUBNODE_TWO Reki;//21 - byte
-            SUBNODE_TWO Gori;//24 - byte
-            SUBNODE_TWO SostoanieZdorovia;//25 - byte
-            SUBNODE_ONE Temp_Hight;//27 - byte
-            SUBNODE_ONE Temp_Low;//29 - byte
-            byte Temp_Srednaa;//30 - byte
+        { 
+            SUBNODE_TWO AktivniiOtdih;//3 - byte
+            SUBNODE_ONE OtdihVKompanii;//5 - byte
+            byte Prirodu;//6 - byte
+            byte OtdihNaPrirode;//8 - byte
+            SUBNODE_ONE Arhitectura;//11 - byte
+            SUBNODE_TWO BolshieGoroda;//13 - byte
+            SUBNODE_ONE MalenkieGoroda;//14 - byte
+            byte Dostoprimechatelnosti;//16 - byte
+            SUBNODE_ONE VoennaaTematika;//19 - byte
+            SUBNODE_TWO Reki;//22 - byte
+            SUBNODE_TWO Gori;//25 - byte
+            SUBNODE_TWO SostoanieZdorovia;//28 - byte
+            SUBNODE_ONE Temp_Hight;//30 - byte
+            SUBNODE_ONE Temp_Low;//32 - byte
+            byte Temp_Srednaa;//33 - byte
             /*
              * SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
              *                      byte FirstFlag;     ---Предпочитает активный отдых
              *                      byte SecondFlag;    ---Любит смену обстановки
+             *                      byte ThirdFlag;     ---Экстримальный отдых
              * SUBNODE_ONE OtdihVKompanii;              -Отдых в компании
              *                      byte FirstFlag;     ---Большая компания
              *                      byte SecondFlag;    ---Маленькая компания
@@ -165,5 +166,84 @@ namespace RGR_II.Classes
                 return this;
             }
         };
+
+        public static bool Rule_Sanatorii_V_Gorah(NODE Struct)
+        {
+            if ()
+            {
+
+            }
+            return true;
+        }
+
+        public static bool Rule_Sanatorii_U_Reki(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Sanatorii(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Otdih_V_Palatkah(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool RuleSanatoriiVGorah(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Voennii_Muzei(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Park_Slavi(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Gornolijnii_Kurort(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Poezdka_Na_More(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Poezdka_Na_Ozero(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Poezdka_Na_Reku(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Dayving(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Alpinizm(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Excursia_V_Gorod(NODE Struct)
+        {
+            return true;
+        }
+
+        public static bool Rule_Excursia_V_Sela(NODE Struct)
+        {
+            return true;
+        }
     }
 }
