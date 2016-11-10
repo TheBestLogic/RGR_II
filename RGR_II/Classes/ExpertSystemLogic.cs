@@ -422,17 +422,26 @@ namespace RGR_II.Classes
             }
         };
 
-
-
-
-
-
-
-
-        /*
-
-        
-
-        */
+        public bool[] DetectRule(bool[] Arr, NODE S)
+        {
+            Arr[0]=S.Rule_Sanatorii_V_Gorah();
+            Arr[1]= S.Rule_Sanatorii_U_Reki();
+            Arr[2]= S.Rule_Sanatorii();
+            Arr[3]= S.Rule_Otdih_V_Palatkah();
+            Arr[4]= S.Rule_Voennii_Muzei();
+            Arr[5]= S.Rule_Park_Slavi();
+            Arr[6]= S.Rule_Gornolijnii_Kurort();
+            Arr[7]= S.Rule_Poezdka_Na_More();
+            Arr[8]= S.Rule_Poezdka_Na_Ozero();
+            Arr[9]= S.Rule_Poezdka_Na_Reku();
+            Arr[10]= S.Rule_Dayving();
+            Arr[11]= S.Rule_Alpinizm();
+            Arr[12]= S.Rule_Excursia_V_Gorod();
+            Arr[13]= S.Rule_Excursia_V_Sela();
+            Arr[14]= S.Rule_Goroda_S_Nasled();
+            Arr[15]= S.Rule_Zapovednik();
+            Arr[16]= S.Rule_Park();
+            return Arr;
+        }
     }
 }
