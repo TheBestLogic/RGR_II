@@ -60,6 +60,9 @@
       <DependentUpon>Local_ENG.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Local\Local_ENG.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Local_ENG.Designer.cs</LastGenOutput>
