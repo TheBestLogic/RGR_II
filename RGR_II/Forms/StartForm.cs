@@ -12,7 +12,7 @@ using static RGR_II.Classes.ExpertSystemLogic;
 
 namespace RGR_II
 {
-    
+
     public partial class StartForm : Form
     {
         byte iteration_step;
@@ -32,8 +32,8 @@ namespace RGR_II
             flag_2 = false;
             Node.Clear();
             label1.Text = "Для того чтобы начать процесс выбора\nнажмите кнопку \"Начать\"";
-            label2.Text = "Выбор означает что вы отдаёте предпочтение и варианты с признаками.\n"+
-                            "Выбор \"Не нравится\" означает что варианты будут с этим пунктом будут исключены."+
+            label2.Text = "Выбор означает что вы отдаёте предпочтение и варианты с признаками.\n" +
+                            "Выбор \"Не нравится\" означает что варианты будут с этим пунктом будут исключены." +
                             "\nОтсутствие выбора означает что вы не против наличия этого пункта";
             label3.Text = "";
             groupBox1.Text = "Пункты для выбора";
@@ -53,6 +53,7 @@ namespace RGR_II
             button_Clear.Text = "Очистить";
             button_Clear.Visible = false;
             button_StartNextEnd.Text = "Начать";
+            button_StartNextEnd.Enabled = true;
         }
 
         private void button_StartNextEnd_Click(object sender, EventArgs e)
@@ -66,10 +67,7 @@ namespace RGR_II
                     label1.Visible = false;
                     Thread.Sleep(300);
                     button_StartNextEnd.Text = "Дальше";
-                    label3.Text = "Ваше отношение к активному отдыху:";
-                    checkBox1.Text = "Любите активный отдых?";
-                    checkBox3.Text = "Хотите сменить обстановку?";
-                    checkBox5.Text = "Любите экстримальный отдых?";
+                    SetActiveComponentAndString("Ваше отношение к активному отдыху:", "Любите активный отдых?", "Хотите сменить обстановку?", "Любите экстримальный отдых?");
                     label3.Visible = true;
                     checkBox1.Visible = true;
                     checkBox2.Visible = true;
@@ -82,221 +80,108 @@ namespace RGR_II
                 case 1:
                     //AktivniiOtdih
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "Ваше отношение к отдыху в компании:";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к отдыху в компании:", "Любите отдых в большой компании?", "Любите отдых в маленькой компании?");
                     iteration_step = 2;
                     break;
                 case 2:
                     //OtdihVKompanii
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к аршитектуре:","Любите исторические строения?","Любите современные строения?");
                     iteration_step = 5;
                     break;
                 case 3:
                     //Prirodu
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
                     if (!checkBox2.Checked)
                     {
                         flag_1 = true;
                         iteration_step = 6;
+                        SetActiveComponentAndString("Ваше отношение к большим городам:", "Любите промышленные города?", "Любите посещать столицы?","Вы хотели бы посетить областной центр?");
                         break;
                     }
                     iteration_step = 4;
+                    SetActiveComponentAndString("Ваше отношения к отдыху на природе:", "Любите отдыхать на природе?");
                     break;
                 case 4:
                     //OtdihNaPrirode
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к рекам, озерам и океанам:","Вы любите моря?","Вы любите реки?","Вы любите озера?");
                     iteration_step = 10;
                     break;
                 case 5:
                     //Arhitectura
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к природе:","Вы любите отдыхать на природе?");
                     iteration_step = 3;
                     break;
                 case 6:
                     //BolshieGoroda
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    iteration_step = 7;
+                    SetActiveComponentAndString("Ваше отношение к маленьким городам:","Вы любите провинциальные города?","Вы любите села?");
+                    iteration_step = 8;
                     break;
                 case 7:
                     //MalenkieGoroda
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    iteration_step = 9;
                     if (flag_1)
                     {
                         iteration_step = 4;
-                        break;
+                        SetActiveComponentAndString("Ваше отношения к отдыху на природе:", "Любите отдыхать на природе?");
+                    }
+                    else
+                    {
+                        iteration_step = 9;
+                        SetActiveComponentAndString("Ваше отношение к военным памятникам культуры:","Вы любите парки военной техники?","Хотели бы вы посетить музеи славы?");
                     }
                     break;
                 case 8:
                     //Dostoprimechatelnosti
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к достопримечательностям:","Вы любите достопримечательности?");
+                    iteration_step = 7;
                     break;
                 case 9:
                     //VoennaaTematika
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Какое у вас состояние здоровья?","Хорошее","Среднее","Тяжелое");
                     iteration_step = 12;
                     break;
                 case 10:
                     //Reki
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
+                    SetActiveComponentAndString("Ваше отношение к горам:","Вы любите высокие горы?","Вы любите холмы?","Вас интерисуют горы с возможностью подьёма?");
                     iteration_step = 11;
                     break;
                 case 11:
                     //Gori
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Ваше отношение к военным памятникам культуры:", "Вы любите парки военной техники?", "Хотели бы вы посетить музеи славы?");
                     iteration_step = 9;
                     break;
                 case 12:
                     //SostoanieZdorovia
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Как вы относитесь к высокой температуре:","Вам нравится температура больше 30 градусов?", "Вам нравится температура от 25 до 30 градусов?");
                     iteration_step = 13;
                     break;
                 case 13:
                     //Temp_Hight
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Как вы относитесь к средней температуре:", "Вам нравится температура от 15 до 25 градусов?");
                     iteration_step = 15;
                     break;
                 case 14:
                     //Temp_Low
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    button_StartNextEnd.Enabled = false;
+                    ////end
                     break;
                 case 15:
                     //Temp_Srednaa
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
-                    Thread.Sleep(300);
-                    label3.Text = "";
-                    checkBox1.Text = "";
-                    checkBox3.Text = "";
-                    checkBox5.Text = "";
+                    SetActiveComponentAndString("Как вы относитесь к низкой температуре:", "Вам нравится температура -10 до 15 градусов?", "Вам нравится температура от -30 до -10 градусов?");
                     iteration_step = 14;
                     break;
-                case 16:
-
-                    return;
                 default:
                     button_StartNextEnd.Enabled = false;
                     Thread.Sleep(300);
@@ -346,6 +231,58 @@ namespace RGR_II
         {
             checkBox5.Enabled = !checkBox6.Checked;
         }
-        
+
+        private void SetActiveComponentAndString(string Label3String, params string[] values)
+        {
+            label3.Text = "...";
+            int Length = values.Length;
+            checkBox1.Enabled = false;
+            checkBox2.Enabled = false;
+            checkBox3.Enabled = false;
+            checkBox4.Enabled = false;
+            checkBox5.Enabled = false;
+            checkBox6.Enabled = false;
+            checkBox1.Text = "...";
+            checkBox3.Text = "...";
+            checkBox5.Text = "...";
+            checkBox2.Text = "...";
+            checkBox4.Text = "...";
+            checkBox6.Text = "...";
+            Thread.Sleep(300);
+            if(Length == 1)
+            {
+                checkBox1.Text = values[0];
+                checkBox2.Text = "Нет";
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+            }
+            if (Length == 2)
+            {
+                checkBox1.Text = values[0];
+                checkBox3.Text = values[1];
+                checkBox2.Text = "Нет";
+                checkBox4.Text = "Нет";
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+            }
+            if (Length == 3)
+            {
+                checkBox1.Text = values[0];
+                checkBox3.Text = values[1];
+                checkBox5.Text = values[2];
+                checkBox2.Text = "Нет";
+                checkBox4.Text = "Нет";
+                checkBox6.Text = "Нет";
+                checkBox1.Enabled = true;
+                checkBox2.Enabled = true;
+                checkBox3.Enabled = true;
+                checkBox4.Enabled = true;
+                checkBox5.Enabled = true;
+                checkBox6.Enabled = true;
+            }
+            label3.Text = Label3String;
+        }
     }
 }
