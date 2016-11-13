@@ -17,6 +17,8 @@ namespace RGR_II
     {
         byte iteration_step;
         NODE Node;
+        bool flag_1;
+        bool flag_2;
         public StartForm()
         {
             InitializeComponent();
@@ -26,6 +28,8 @@ namespace RGR_II
         {
             groupBox1.Visible = false;
             iteration_step = 0;
+            flag_1 = false;
+            flag_2 = false;
             Node.Clear();
             label1.Text = "Для того чтобы начать процесс выбора\nнажмите кнопку \"Начать\"";
             label2.Text = "Выбор означает что вы отдаёте предпочтение и варианты с признаками.\n"+
@@ -73,8 +77,10 @@ namespace RGR_II
                     checkBox4.Visible = true;
                     checkBox5.Visible = true;
                     checkBox6.Visible = true;
+                    iteration_step = 1;
                     break;
                 case 1:
+                    //AktivniiOtdih
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -85,8 +91,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 2;
                     break;
                 case 2:
+                    //OtdihVKompanii
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -97,8 +105,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 5;
                     break;
                 case 3:
+                    //Prirodu
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -109,8 +119,16 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    if (!checkBox2.Checked)
+                    {
+                        flag_1 = true;
+                        iteration_step = 6;
+                        break;
+                    }
+                    iteration_step = 4;
                     break;
                 case 4:
+                    //OtdihNaPrirode
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -121,8 +139,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 10;
                     break;
                 case 5:
+                    //Arhitectura
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -133,8 +153,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 3;
                     break;
                 case 6:
+                    //BolshieGoroda
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -145,8 +167,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 7;
                     break;
                 case 7:
+                    //MalenkieGoroda
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -157,8 +181,15 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 9;
+                    if (flag_1)
+                    {
+                        iteration_step = 4;
+                        break;
+                    }
                     break;
                 case 8:
+                    //Dostoprimechatelnosti
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -171,6 +202,7 @@ namespace RGR_II
                     checkBox5.Text = "";
                     break;
                 case 9:
+                    //VoennaaTematika
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -181,16 +213,20 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 12;
                     break;
                 case 10:
+                    //Reki
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
                     Thread.Sleep(300);
+                    iteration_step = 11;
                     break;
                 case 11:
+                    //Gori
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -201,8 +237,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 9;
                     break;
                 case 12:
+                    //SostoanieZdorovia
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -213,8 +251,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 13;
                     break;
                 case 13:
+                    //Temp_Hight
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -225,8 +265,10 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 15;
                     break;
                 case 14:
+                    //Temp_Low
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -239,6 +281,7 @@ namespace RGR_II
                     checkBox5.Text = "";
                     break;
                 case 15:
+                    //Temp_Srednaa
                     SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     label3.Text = "";
                     checkBox1.Text = "";
@@ -249,7 +292,11 @@ namespace RGR_II
                     checkBox1.Text = "";
                     checkBox3.Text = "";
                     checkBox5.Text = "";
+                    iteration_step = 14;
                     break;
+                case 16:
+
+                    return;
                 default:
                     button_StartNextEnd.Enabled = false;
                     Thread.Sleep(300);
@@ -257,7 +304,6 @@ namespace RGR_II
                     button_StartNextEnd.Enabled = true;
                     return;
             }
-            ++iteration_step;
             button_StartNextEnd.Enabled = true;
         }
 
