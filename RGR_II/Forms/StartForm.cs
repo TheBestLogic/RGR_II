@@ -49,7 +49,7 @@ namespace RGR_II
             checkBox5.Visible = false;
             checkBox6.Visible = false;
             button_Clear.Text = "Очистить";
-            button_Clear.Visible = false;
+            button_Clear.Enabled = false;
             button_StartNextEnd.Text = "Начать";
             button_StartNextEnd.Enabled = true;
         }
@@ -60,10 +60,9 @@ namespace RGR_II
             switch (iteration_step)
             {
                 case 0:
-                    groupBox1.Visible = true;
-                    button_Clear.Visible = true;
                     label1.Visible = false;
-                    Thread.Sleep(300);
+                    groupBox1.Visible = true;
+                    button_Clear.Enabled = true;
                     button_StartNextEnd.Text = "Дальше";
                     SetActiveComponentAndString("Ваше отношение к активному отдыху:", "Любите активный отдых?", "Хотите сменить обстановку?", "Любите экстримальный отдых?");
                     label3.Visible = true;
@@ -154,9 +153,12 @@ namespace RGR_II
                     break;
                 case 11:
                     //Gori
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
-                    SetActiveComponentAndString("Ваше отношение к военным памятникам культуры:", "Вы любите парки военной техники?", "Хотели бы вы посетить музеи славы?");
-                    iteration_step = 9;
+                    if (checkBox1.Checked || checkBox3.Checked || checkBox5.Checked)
+                    {
+                        Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                        SetActiveComponentAndString("Ваше отношение к военным памятникам культуры:", "Вы любите парки военной техники?", "Хотели бы вы посетить музеи славы?");
+                        iteration_step = 9;
+                    }
                     break;
                 case 12:
                     //SostoanieZdorovia
@@ -204,10 +206,6 @@ namespace RGR_II
             StartForm_Load(sender, e);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -325,8 +323,13 @@ namespace RGR_II
         private void GetResultForRules()
         {
             bool[] Arr = new bool[17];
-            Arr=DetectRule(Arr,Node);
-            Arr = Arr;
+            label1.Text = GetResultString(DetectRule(Arr, Node));
+            groupBox1.Visible = false;
+            label1.Visible = true;
         }
+
+
+
+        
     }
 }

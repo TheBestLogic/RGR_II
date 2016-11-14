@@ -405,7 +405,7 @@ namespace RGR_II.Classes
                 {
                     return false;
                 }
-                if ((Dostoprimechatelnosti == 1 ) && ( Prirodu == 1) || OtdihNaPrirode ==1 || AktivniiOtdih.CheckOR_1()==true)
+                if ((Dostoprimechatelnosti == 1 ) && ( Prirodu == 1) && OtdihNaPrirode ==1 && AktivniiOtdih.CheckOR_1()==true)
                 {
                     return true;
                 }
@@ -577,6 +577,91 @@ namespace RGR_II.Classes
                     break;
             }
             return Node;
+        }
+
+        public static string GetResultString(bool[] Arr)
+        {
+            bool R = false;
+            string Str = null;
+            for (int i = 0; i < Arr.Length; ++i)
+            {
+                R |= Arr[i];
+            }
+            if (!R)
+            {
+                Str = "\tСистема не смогла определить результат.\n\tПредлагаем вам, хотя бы, прогулятся на улице.\n";
+                return Str;
+            }
+            Str = "Система предлагает такие места для отдыха:";
+            if (Arr[0])
+            {
+                Str += "\n\t\t- Санаторий в горах;";
+            }
+            if (Arr[1])
+            {
+                Str += "\n\t\t- Санаторий возле воды;";
+            }
+            if (Arr[2])
+            {
+                Str += "\n\t\t- Санаторий;";
+            }
+            if (Arr[3])
+            {
+                Str += "\n\t\t- Отдых в палатках;";
+            }
+            if (Arr[4])
+            {
+                Str += "\n\t\t- Посетить парк военной техники;";
+            }
+            if (Arr[5])
+            {
+                Str += "\n\t\t- Посетить музей военной славы;";
+            }
+            if (Arr[6])
+            {
+                Str += "\n\t\t- Горнолыжный курорт;";
+            }
+            if (Arr[7])
+            {
+                Str += "\n\t\t- Путевка на море;";
+            }
+            if (Arr[8])
+            {
+                Str += "\n\t\t- Поездка на озеро;";
+            }
+            if (Arr[9])
+            {
+                Str += "\n\t\t- Поехать на берег реки;";
+            }
+            if (Arr[10])
+            {
+                Str += "\n\t\t- Заняться дайвингом;";
+            }
+            if (Arr[11])
+            {
+                Str += "\n\t\t- Заняться альпинизмом;";
+            }
+            if (Arr[12])
+            {
+                Str += "\n\t\t- Съездить на экскурсию по городам;";
+            }
+            if (Arr[13])
+            {
+                Str += "\n\t\t- Съездить на экскурсию по сёлам;";
+            }
+            if (Arr[14])
+            {
+                Str += "\n\t\t- Посетить город с большим историческим наследием;";
+            }
+            if (Arr[15])
+            {
+                Str += "\n\t\t- Посетить заповедник;";
+            }
+            if (Arr[16])
+            {
+                Str += "\n\t\t- Посетить парк;";
+            }
+            return Str;
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
@@ -39,8 +40,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button_StartNextEnd = new System.Windows.Forms.Button();
             this.button_Clear = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +68,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "label3";
             // 
             // label2
             // 
@@ -147,7 +155,7 @@
             // 
             // button_StartNextEnd
             // 
-            this.button_StartNextEnd.Location = new System.Drawing.Point(20, 228);
+            this.button_StartNextEnd.Location = new System.Drawing.Point(4, 215);
             this.button_StartNextEnd.Name = "button_StartNextEnd";
             this.button_StartNextEnd.Size = new System.Drawing.Size(75, 23);
             this.button_StartNextEnd.TabIndex = 2;
@@ -157,7 +165,7 @@
             // 
             // button_Clear
             // 
-            this.button_Clear.Location = new System.Drawing.Point(102, 228);
+            this.button_Clear.Location = new System.Drawing.Point(384, 215);
             this.button_Clear.Name = "button_Clear";
             this.button_Clear.Size = new System.Drawing.Size(75, 23);
             this.button_Clear.TabIndex = 3;
@@ -165,31 +173,11 @@
             this.button_Clear.UseVisualStyleBackColor = true;
             this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(184, 228);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
-            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 324);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(471, 251);
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.button_StartNextEnd);
             this.Controls.Add(this.groupBox1);
@@ -217,7 +205,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button_StartNextEnd;
         private System.Windows.Forms.Button button_Clear;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
     }
 }
