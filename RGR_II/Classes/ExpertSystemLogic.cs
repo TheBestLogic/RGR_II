@@ -207,11 +207,11 @@ namespace RGR_II.Classes
 
             public bool Rule_Sanatorii_V_Gorah()
             {
-                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
+                if (SostoanieZdorovia.FT != 1 && AktivniiOtdih.CheckOR_0() == true)
                 {
                     return false;
                 }
-                if (Gori.FF != 0 || Gori.FS != 0 || Gori.FT != 0)
+                if ( Gori.CheckOR_2()==true)
                 {
                     return false;
                 }
@@ -224,7 +224,7 @@ namespace RGR_II.Classes
                 {
                     return false;
                 }
-                if (Reki.FF != 0 || Reki.FS != 0 || Reki.FT != 0)
+                if (Reki.CheckOR_2() == true)
                 {
                     return false;
                 }
@@ -446,8 +446,10 @@ namespace RGR_II.Classes
 
         public static NODE SetNodeParam(NODE Node, byte Parameter, params bool[] values)
         {
-            if (values.Length!= 2 || values.Length != 4 || values.Length != 6)
+            if (values.Length!= 2 && values.Length != 4 && values.Length != 6)
+            {
                 return Node;
+            }  
             switch (Parameter)
             {
                 case 1:
@@ -455,121 +457,121 @@ namespace RGR_II.Classes
                     {
                         return Node;
                     }
-                    Node.AktivniiOtdih.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.AktivniiOtdih.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.AktivniiOtdih.FT = (!values[4]) ? ((values[5]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.AktivniiOtdih.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));  
+                    Node.AktivniiOtdih.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
+                    Node.AktivniiOtdih.FT = (values[4]) ? ((byte)1) : ((values[5]) ? ((byte)2) : ((byte)0));
                     break;
                 case 2:
                     if (Parameter == 2 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.OtdihVKompanii.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.OtdihVKompanii.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.OtdihVKompanii.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.OtdihVKompanii.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 3:
                     if (Parameter == 3 && values.Length != 2)
                     {
                         return Node;
                     }
-                    Node.Prirodu = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Prirodu = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
                     break;
                 case 4:
                     if (Parameter == 4 && values.Length != 2)
                     {
                         return Node;
                     }
-                    Node.OtdihNaPrirode = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.OtdihNaPrirode = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
                     break;
                 case 5:
                     if (Parameter == 5 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.Arhitectura.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Arhitectura.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Arhitectura.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.Arhitectura.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 6:
                     if (Parameter == 6 && values.Length != 6)
                     {
                         return Node;
                     }
-                    Node.BolshieGoroda.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.BolshieGoroda.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.BolshieGoroda.FT = (!values[4]) ? ((values[5]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.BolshieGoroda.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.BolshieGoroda.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
+                    Node.BolshieGoroda.FT = (values[4]) ? ((byte)1) : ((values[5]) ? ((byte)2) : ((byte)0));
                     break;
                 case 7:
                     if (Parameter == 7 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.MalenkieGoroda.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.MalenkieGoroda.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.MalenkieGoroda.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.MalenkieGoroda.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 8:
                     if (Parameter == 8 && values.Length != 2)
                     {
                         return Node;
                     }
-                    Node.Dostoprimechatelnosti = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Dostoprimechatelnosti = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
                     break;
                 case 9:
                     if (Parameter == 9 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.VoennaaTematika.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.VoennaaTematika.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.VoennaaTematika.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.VoennaaTematika.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 10:
                     if (Parameter == 10 && values.Length != 6)
                     {
                         return Node;
                     }
-                    Node.Reki.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Reki.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Reki.FT = (!values[4]) ? ((values[5]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Reki.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.Reki.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
+                    Node.Reki.FT = (values[4]) ? ((byte)1) : ((values[5]) ? ((byte)2) : ((byte)0));
                     break;
                 case 11:
                     if (Parameter == 11 && values.Length != 6)
                     {
                         return Node;
                     }
-                    Node.Gori.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Gori.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Gori.FT = (!values[4]) ? ((values[5]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Gori.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.Gori.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
+                    Node.Gori.FT = (values[4]) ? ((byte)1) : ((values[5]) ? ((byte)2) : ((byte)0));
                     break;
                 case 12:
                     if (Parameter == 12 && values.Length != 6)
                     {
                         return Node;
                     }
-                    Node.SostoanieZdorovia.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.SostoanieZdorovia.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.SostoanieZdorovia.FT = (!values[4]) ? ((values[5]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.SostoanieZdorovia.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.SostoanieZdorovia.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
+                    Node.SostoanieZdorovia.FT = (values[4]) ? ((byte)1) : ((values[5]) ? ((byte)2) : ((byte)0));
                     break;
                 case 13:
                     if (Parameter == 13 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.Temp_Hight.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Temp_Hight.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Temp_Hight.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.Temp_Hight.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 14:
                     if (Parameter == 14 && values.Length != 4)
                     {
                         return Node;
                     }
-                    Node.Temp_Low.FF = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
-                    Node.Temp_Low.FS = (!values[2]) ? ((values[3]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Temp_Low.FF = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
+                    Node.Temp_Low.FS = (values[2]) ? ((byte)1) : ((values[3]) ? ((byte)2) : ((byte)0));
                     break;
                 case 15:
                     if (Parameter == 15 && values.Length != 2)
                     {
                         return Node;
                     }
-                    Node.Temp_Srednaa = (!values[0]) ? ((values[1]) ? ((byte)2) : ((byte)1)) : ((byte)0);
+                    Node.Temp_Srednaa = (values[0]) ? ((byte)1) : ((values[1]) ? ((byte)2) : ((byte)0));
                     break;
                 default:
                     break;
