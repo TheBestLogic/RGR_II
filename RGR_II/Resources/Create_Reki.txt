@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[Reki] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[FF]   TINYINT       DEFAULT ((0)) NULL,
+    [FS]   TINYINT       DEFAULT ((0)) NULL,
+    [FT]   TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (ID)
+);

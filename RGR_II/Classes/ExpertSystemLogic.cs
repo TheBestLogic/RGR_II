@@ -121,6 +121,7 @@ namespace RGR_II.Classes
             public SUBNODE_ONE Temp_Hight;//30 - byte
             public SUBNODE_ONE Temp_Low;//32 - byte
             public byte Temp_Srednaa;//33 - byte
+            
             /*
              * SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
              *                      byte FF;            ---Предпочитает активный отдых
@@ -421,6 +422,19 @@ namespace RGR_II.Classes
                 return false;
             }
         };
+
+        public struct RULE
+        {
+            public int ID;
+            public NODE Node;
+            public string Name; 
+
+            public void SetIdName(RULE R)
+            {
+                ID = R.ID;
+                Name = R.Name;
+            }
+        }
 
         public static bool[] DetectRule(bool[] Arr, NODE S)
         {

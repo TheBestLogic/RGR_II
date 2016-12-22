@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[MalenkieGoroda] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (ID)
+);

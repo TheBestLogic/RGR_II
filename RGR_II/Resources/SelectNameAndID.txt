@@ -1,0 +1,4 @@
+SELECT
+	R.ID, R.Name
+FROM
+    [Rules] R

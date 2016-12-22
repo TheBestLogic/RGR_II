@@ -1,0 +1,42 @@
+ SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
+             *                      byte FF;            ---Предпочитает активный отдых
+             *                      byte FS;            ---Любит смену обстановки
+             *                      byte FT;            ---Экстримальный отдых
+             * SUBNODE_ONE OtdihVKompanii;              -Отдых в компании
+             *                      byte FF;            ---Большая компания
+             *                      byte FS;            ---Маленькая компания
+             * byte Prirodu;                            -Любит природу
+             * byte OtdihNaPrirode;                     -Любит отдых на природе
+             * SUBNODE_ONE Arhitectura;                 -Любит архитектуру
+             *                      byte FF;            ---Исторические строения
+             *                      byte FS;            ---Современные строения
+             * SUBNODE_TWO BolshieGoroda;               -Любит большие города
+             *                      byte FF;            ---Промышленные города
+             *                      byte FS;            ---Столицы
+             *                      byte FT;            ---Обласные центры
+             * SUBNODE_ONE MalenkieGoroda;              -Любит маленькие города
+             *                      byte FF;            ---Провинцыальные города
+             *                      byte FS;            ---Села
+             * byte Dostoprimechatelnosti;              -Любит достопримечательности
+             * SUBNODE_ONE VoennaaTematika;             -Любит военную тематику
+             *                      byte FF;            ---Музей военной техники
+             *                      byte FS;            ---Парки славы
+             * SUBNODE_TWO Reki;                        -Любит реки
+             *                      byte FF;            ---Моря
+             *                      byte FS;            ---Реки
+             *                      byte FT;            ---Озера
+             * SUBNODE_TWO Gori;                        -Любит горы
+             *                      byte FF;            ---Высокие горы
+             *                      byte FS;            ---холмы
+             *                      byte FT;            ---с возможностью подьёма
+             * SUBNODE_TWO SostoanieZdorovia;           -Состояние здоровья
+             *                      byte FF;            ---Хорошее
+             *                      byte FS;            ---Среднее
+             *                      byte FT;            ---Тяжелое
+             * SUBNODE_ONE Temp_Hight;                  -Любит высокую температуру
+             *                      byte FF;            --- 30+
+             *                      byte FS;            --- 25+ - 30+
+             * SUBNODE_ONE Temp_Low;                    -Любит низкую температуру
+             *                      byte FF;            --- -10 - 15+
+             *                      byte FS;            --- -30 - -10
+             * byte Temp_Srednaa;                       -Любит среднюю температуру 15-25

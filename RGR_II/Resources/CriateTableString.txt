@@ -1,0 +1,102 @@
+CREATE TABLE [dbo].[Rules] (
+    [ID]        INT      IDENTITY(0,1),
+    [Priroda]       TINYINT       DEFAULT 0 NOT NULL,
+    [OtdihNaPrirode]    TINYINT       DEFAULT 0 NOT NULL,
+    [Dostoprimech]       TINYINT       DEFAULT 0 NOT NULL,
+    [TempSred]    TINYINT       DEFAULT 0 NOT NULL,
+    [Name]      VARCHAR (150) NULL
+	PRIMARY KEY (ID)
+);
+CREATE TABLE [dbo].[AktivniiOtdih] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+    [FT]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[OtdihVKompanii] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF] TINYINT       DEFAULT ((0)) NULL,
+    [FS] TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[Arhitectura] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[BolshieGoroda] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+    [FT]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[MalenkieGoroda] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[VoennaaTematika] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]  TINYINT       DEFAULT ((0)) NULL,
+    [FS]  TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[Reki] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]   TINYINT       DEFAULT ((0)) NULL,
+    [FS]   TINYINT       DEFAULT ((0)) NULL,
+    [FT]   TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[Gori] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF]   TINYINT       DEFAULT ((0)) NULL,
+    [FS]   TINYINT       DEFAULT ((0)) NULL,
+    [FT]   TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[SostoanieZdorovia] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF] TINYINT       DEFAULT ((0)) NULL,
+    [FS] TINYINT       DEFAULT ((0)) NULL,
+    [FT] TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[Temp_Hight] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF] TINYINT       DEFAULT ((0)) NULL,
+    [FS] TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);
+CREATE TABLE [dbo].[Temp_Low] (
+    [ID]        INT      DEFAULT ((0)) NOT NULL,
+	[IDPersonal]        INT      IDENTITY(0,1),
+	[FF] TINYINT       DEFAULT ((0)) NULL,
+    [FS] TINYINT       DEFAULT ((0)) NULL,
+	PRIMARY KEY (IDPersonal),
+	FOREIGN KEY (ID) REFERENCES Rules (ID)
+);

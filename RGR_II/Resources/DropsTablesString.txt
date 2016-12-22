@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS dbo.Rules;
+DROP TABLE IF EXISTS dbo.AktivniiOtdih;
+DROP TABLE IF EXISTS dbo.Arhitectura;
+DROP TABLE IF EXISTS dbo.BolshieGoroda;
+DROP TABLE IF EXISTS dbo.Gori;
+DROP TABLE IF EXISTS dbo.MalenkieGoroda;
+DROP TABLE IF EXISTS dbo.OtdihVKompanii;
+DROP TABLE IF EXISTS dbo.Reki;
+DROP TABLE IF EXISTS dbo.SostoanieZdorovia;
+DROP TABLE IF EXISTS dbo.Temp_Hight;
+DROP TABLE IF EXISTS dbo.Temp_Low;
+DROP TABLE IF EXISTS dbo.VoennaaTematika;
