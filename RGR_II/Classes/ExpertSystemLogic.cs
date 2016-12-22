@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using static RGR_II.Classes.DatabaseInteraction;
 
 namespace RGR_II.Classes
 {
@@ -27,6 +29,18 @@ namespace RGR_II.Classes
                 return this;
             }
 
+            public bool Sr(SUBNODE_ONE S)
+            {
+                if (FF == 2 && S.FF != 2)
+                    return false;
+                if (FF > 2 && S.FF == 2)
+                    return false;
+                if (FS == 2 && S.FS != 2)
+                    return false;
+                if (FS > 2 && S.FS == 2)
+                    return false;
+                return true;
+            }
             public void Set(byte One = 0, byte Two = 0)
             {
                 FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
@@ -76,6 +90,33 @@ namespace RGR_II.Classes
                 return this;
             }
 
+            public bool Sr(SUBNODE_TWO S, bool f = false)
+            {
+                if (!f)
+                {
+                    if (FF == 2 && S.FF != 2)
+                        return false;
+                    if (FF > 2 && S.FF == 2)
+                        return false;
+                    if (FS == 2 && S.FS != 2)
+                        return false;
+                    if (FS > 2 && S.FS == 2)
+                        return false;
+                    if (FT == 2 && S.FT != 2)
+                        return false;
+                    if (FT > 2 && S.FT == 2)
+                        return false;
+                    return true;
+                }
+                if(FF == 1 && S.FF < 0)
+                    return true;
+                if (FS == 1 && S.FS != 1 && S.FF != 2)
+                    return true;
+                if (FT == 1 && S.FT != 1 && S.FF != 2 && S.FS != 2)
+                    return true;
+                return false;
+
+            }
             public void Set(byte One = 0, byte Two = 0, byte Three = 0)
             {
                 FF = (One < 0) ? (((One == 1) ? ((byte)1) : ((byte)2))) : ((byte)0);
@@ -121,7 +162,7 @@ namespace RGR_II.Classes
             public SUBNODE_ONE Temp_Hight;//30 - byte
             public SUBNODE_ONE Temp_Low;//32 - byte
             public byte Temp_Srednaa;//33 - byte
-            
+
             /*
              * SUBNODE_ONE AktivniiOtdih;               -Активный Отдых
              *                      byte FF;            ---Предпочитает активный отдых
@@ -166,6 +207,26 @@ namespace RGR_II.Classes
              *                      byte FS;            --- -30 - -10
              * byte Temp_Srednaa;                       -Любит среднюю температуру 15-25
              */
+            
+            public bool Sr(NODE S)
+            {
+                bool flag = true & SostoanieZdorovia.Sr(S.SostoanieZdorovia, true);
+                flag &= AktivniiOtdih.Sr(S.AktivniiOtdih);
+                flag &= OtdihVKompanii.Sr(S.OtdihVKompanii);
+                flag &= Arhitectura.Sr(S.Arhitectura);
+                flag &= BolshieGoroda.Sr(S.BolshieGoroda);
+                flag &= MalenkieGoroda.Sr(S.MalenkieGoroda);
+                flag &= VoennaaTematika.Sr(S.VoennaaTematika);
+                flag &= Reki.Sr(S.Reki);
+                flag &= Gori.Sr(S.Gori);
+                flag &= Temp_Hight.Sr(S.Temp_Hight);
+                flag &= Temp_Low.Sr(S.Temp_Low);
+                flag &= (Prirodu == 2 && S.Prirodu != 2) ? (false) : ((Prirodu > 2 && S.Prirodu == 2) ? (false) : (true));
+                flag &= (OtdihNaPrirode == 2 && S.OtdihNaPrirode != 2) ? (false) : ((OtdihNaPrirode > 2 && S.OtdihNaPrirode == 2) ? (false) : (true));
+                flag &= (Temp_Srednaa == 2 && S.Temp_Srednaa != 2) ? (false) : ((Temp_Srednaa > 2 && S.Temp_Srednaa == 2) ? (false) : (true));
+                flag &= (Dostoprimechatelnosti == 2 && S.Dostoprimechatelnosti != 2) ? (false) : ((Dostoprimechatelnosti > 2 && S.Dostoprimechatelnosti == 2) ? (false) : (true));
+                return flag;
+            }
             public NODE Copy(NODE S)
             {
                 AktivniiOtdih = S.AktivniiOtdih;
@@ -205,222 +266,6 @@ namespace RGR_II.Classes
                 Temp_Srednaa = 0;
                 return this;
             }
-
-            public bool Rule_Sanatorii_V_Gorah()
-            {
-                if (SostoanieZdorovia.FT != 1 && AktivniiOtdih.CheckOR_0() == true)
-                {
-                    return false;
-                }
-                if ( Gori.CheckOR_2()==true)
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            public bool Rule_Sanatorii_U_Reki()
-            {
-                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
-                {
-                    return false;
-                }
-                if (Reki.CheckOR_2() == true)
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            public bool Rule_Sanatorii()
-            {
-                if (SostoanieZdorovia.FT != 0 && AktivniiOtdih.CheckOR_0() == true)
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            public bool Rule_Otdih_V_Palatkah()
-            {
-                if (Temp_Hight.CheckOR_2() == true || SostoanieZdorovia.FT != 0)
-                {
-                    return false;
-                }
-                if ((Prirodu == 1 || OtdihNaPrirode == 1) && OtdihVKompanii.CheckOR_1() == true)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Voennii_Muzei()
-            {
-                if (VoennaaTematika.FF == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            public bool Rule_Park_Slavi()
-            {
-                if (VoennaaTematika.FS == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            public bool Rule_Gornolijnii_Kurort()
-            {
-                if (Temp_Low.CheckOR_2() == true || SostoanieZdorovia.FT != 1)
-                {
-                    return false;
-                }
-                if (Gori.CheckOR_1() == true && Temp_Low.CheckOR_1() == true && AktivniiOtdih.CheckOR_1() == true)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Poezdka_Na_More()
-            {
-                if (Reki.FF == 2)
-                {
-                    return false;
-                }
-                if (Reki.FF == 1 && AktivniiOtdih.FS == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Poezdka_Na_Ozero()
-            {
-                if (Reki.FT == 2)
-                {
-                    return false;
-                }
-                if (Reki.FT == 1 && AktivniiOtdih.FS == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Poezdka_Na_Reku()
-            {
-                if (Reki.FS == 2)
-                {
-                    return false;
-                }
-                if (Reki.FS == 1 && AktivniiOtdih.FS == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Dayving()
-            {
-                if (SostoanieZdorovia.FT==1)
-                {
-                    return false;
-                }
-                if (Reki.CheckOR_1()==true && AktivniiOtdih.FT == 1 && AktivniiOtdih.FF == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Alpinizm()
-            {
-                if (SostoanieZdorovia.FT == 1 && ((Temp_Low.CheckOR_0()==true && Temp_Srednaa==0 && Temp_Hight.FF==1 && Temp_Hight.FS==0)|| (Temp_Low.CheckOR_2() == true && Temp_Srednaa == 2 && Temp_Hight.FF == 1 && Temp_Hight.FS == 2)))
-                {
-                    return false;
-                }
-                if (Gori.CheckOR_1() == true  && AktivniiOtdih.FT == 1 && AktivniiOtdih.FF == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-            
-            public bool Rule_Excursia_V_Gorod()
-            {
-                if (OtdihVKompanii.CheckOR_2()==true)
-                {
-                    return false;
-                }
-                if((Arhitectura.CheckOR_1()==true) && (BolshieGoroda.CheckOR_1()==true || MalenkieGoroda.FF ==1))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Excursia_V_Sela()
-            {
-                if (OtdihVKompanii.CheckOR_2() == true)
-                {
-                    return false;
-                }
-                if ( Arhitectura.CheckOR_1() == true &&  MalenkieGoroda.FS == 1)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Goroda_S_Nasled()
-            {
-                if ((Dostoprimechatelnosti == 1 || Arhitectura.CheckOR_1() == true) && (BolshieGoroda.CheckOR_1() == true || MalenkieGoroda.FF == 1))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Mesta_S_B_Nasled()
-            {
-                if ((Dostoprimechatelnosti == 1 || Arhitectura.CheckOR_1() == true) && (BolshieGoroda.CheckOR_1() == true || MalenkieGoroda.CheckOR_1() == true || Prirodu == 1))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Zapovednik()
-            {
-                if (SostoanieZdorovia.FT != 0)
-                {
-                    return false;
-                }
-                if ((Dostoprimechatelnosti == 1 ) && ( Prirodu == 1) && OtdihNaPrirode ==1 && AktivniiOtdih.CheckOR_1()==true)
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            public bool Rule_Park()
-            { 
-                if (AktivniiOtdih.CheckOR_2()==true && (Prirodu == 1 || OtdihNaPrirode == 1 || MalenkieGoroda.CheckOR_1()==true || BolshieGoroda.CheckOR_1()==true))
-                {
-                    return true;
-                }
-                return false;
-            }
         };
 
         public struct RULE
@@ -434,29 +279,33 @@ namespace RGR_II.Classes
                 ID = R.ID;
                 Name = R.Name;
             }
+
+            public void Copy(RULE R)
+            {
+                ID = R.ID;
+                Name = R.Name;
+                Node.Copy(R.Node);
+            }
+
+            public List<string> CorrectRules(SqlConnection Connection)
+            {
+                List<RULE> ListNode = new List<RULE>();
+                List<string> RuleNameStrings = new List<string>();
+                RULE R = new RULE();
+                R.Copy(this);
+                ListNode = SELECTallRules(Connection, true, R, ListNode);
+                for (int i = 0; i < ListNode.Count; ++i)
+                {
+                   if (R.Node.Sr(ListNode[i].Node))
+                   {
+                       RuleNameStrings.Add(ListNode[i].Name);
+                   }
+               }
+               return RuleNameStrings;
+            }
         }
 
-        public static bool[] DetectRule(bool[] Arr, NODE S)
-        {
-            Arr[0]=S.Rule_Sanatorii_V_Gorah();
-            Arr[1]= S.Rule_Sanatorii_U_Reki();
-            Arr[2]= S.Rule_Sanatorii();
-            Arr[3]= S.Rule_Otdih_V_Palatkah();
-            Arr[4]= S.Rule_Voennii_Muzei();
-            Arr[5]= S.Rule_Park_Slavi();
-            Arr[6]= S.Rule_Gornolijnii_Kurort();
-            Arr[7]= S.Rule_Poezdka_Na_More();
-            Arr[8]= S.Rule_Poezdka_Na_Ozero();
-            Arr[9]= S.Rule_Poezdka_Na_Reku();
-            Arr[10]= S.Rule_Dayving();
-            Arr[11]= S.Rule_Alpinizm();
-            Arr[12]= S.Rule_Excursia_V_Gorod();
-            Arr[13]= S.Rule_Excursia_V_Sela();
-            Arr[14]= S.Rule_Goroda_S_Nasled();
-            Arr[15]= S.Rule_Zapovednik();
-            Arr[16]= S.Rule_Park();
-            return Arr;
-        }
+      
 
         public static NODE SetNodeParam(NODE Node, byte Parameter, params bool[] values)
         {

@@ -323,7 +323,7 @@ namespace RGR_II
         private void GetResultForRules()
         {
             bool[] Arr = new bool[17];
-            label1.Text = GetResultString(DetectRule(Arr, Node));
+            //label1.Text = GetResultString(DetectRule(Arr, Node));
             groupBox1.Visible = false;
             label1.Visible = true;
         }
