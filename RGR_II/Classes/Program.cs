@@ -18,6 +18,8 @@ namespace RGR_II
             GetCreateTableString();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Classes.ResourcesConfigEditClass.GetProdjectDir();
+            Classes.ResourcesConfigEditClass.GetDatabaseDir();
             Application.Run(new StartForm());
         }
     }

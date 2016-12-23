@@ -63,16 +63,22 @@
   <ItemGroup>
     <Compile Include="Classes\DatabaseInteraction.cs" />
     <Compile Include="Classes\ExpertSystemLogic.cs" />
+    <Compile Include="Classes\ResourcesConfigEditClass.cs" />
     <Compile Include="DBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataSeenEditForm.cs">
+    <Compile Include="DBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeenEditDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataSeenEditForm.Designer.cs">
-      <DependentUpon>DataSeenEditForm.cs</DependentUpon>
+    <Compile Include="Forms\SeenEditDatabaseForm.Designer.cs">
+      <DependentUpon>SeenEditDatabaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\StartForm.cs">
       <SubType>Form</SubType>
@@ -82,8 +88,8 @@
     </Compile>
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\DataSeenEditForm.resx">
-      <DependentUpon>DataSeenEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SeenEditDatabaseForm.resx">
+      <DependentUpon>SeenEditDatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
@@ -108,6 +114,17 @@
     </None>
     <None Include="DBDataSet.xss">
       <DependentUpon>DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBDataSet1.xsc">
+      <DependentUpon>DBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBDataSet1.xss">
+      <DependentUpon>DBDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

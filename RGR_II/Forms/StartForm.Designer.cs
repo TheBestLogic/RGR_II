@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,6 +41,8 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button_StartNextEnd = new System.Windows.Forms.Button();
             this.button_Clear = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,17 +176,30 @@
             this.button_Clear.UseVisualStyleBackColor = true;
             this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(4, 244);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(455, 23);
+            this.progressBar1.TabIndex = 4;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 10000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 251);
+            this.ClientSize = new System.Drawing.Size(463, 276);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.button_StartNextEnd);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "StartForm";
-            this.Text = "StartForm";
+            this.Text = "ExpertSystem";
             this.Load += new System.EventHandler(this.StartForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -206,6 +222,8 @@
         private System.Windows.Forms.Button button_StartNextEnd;
         private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

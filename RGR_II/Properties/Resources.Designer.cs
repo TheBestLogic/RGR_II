@@ -61,6 +61,15 @@ namespace RGR_II.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на \tConnection.
+        /// </summary>
+        internal static string ConnectionPrefix {
+            get {
+                return ResourceManager.GetString("ConnectionPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на CREATE TABLE [dbo].[AktivniiOtdih] (
         ///    [ID]        INT      DEFAULT ((0)) NOT NULL,
         ///	[FF]  TINYINT       DEFAULT ((0)) NULL,
@@ -326,6 +335,15 @@ namespace RGR_II.Properties {
         internal static string SelectTOPaLL {
             get {
                 return ResourceManager.GetString("SelectTOPaLL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ExpertSystem.
+        /// </summary>
+        internal static string StartFormName {
+            get {
+                return ResourceManager.GetString("StartFormName", resourceCulture);
             }
         }
         

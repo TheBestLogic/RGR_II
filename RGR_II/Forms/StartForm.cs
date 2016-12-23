@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static RGR_II.Classes.ExpertSystemLogic;
+using System.Data.SqlClient;
+using static RGR_II.Classes.DatabaseInteraction;
 
 namespace RGR_II
 {
@@ -16,19 +18,17 @@ namespace RGR_II
     public partial class StartForm : Form
     {
         byte iteration_step;
-        NODE Node;
+        RULE Rule;
         bool flag_1;
+        public SqlConnection Connection;
         public StartForm()
         {
             InitializeComponent();
-        }
-
-        private void StartForm_Load(object sender, EventArgs e)
-        {
             groupBox1.Visible = false;
+            Text = Properties.Resources.StartFormName;
             iteration_step = 0;
             flag_1 = false;
-            Node.Clear();
+            Rule.Node.Clear();
             label1.Text = "Для того чтобы начать процесс выбора\nнажмите кнопку \"Начать\"";
             label2.Text = "Выбор означает что вы отдаёте предпочтение и варианты с признаками.\n" +
                             "Выбор \"Не нравится\" означает что варианты будут с этим пунктом будут исключены." +
@@ -51,7 +51,24 @@ namespace RGR_II
             button_Clear.Text = "Очистить";
             button_Clear.Enabled = false;
             button_StartNextEnd.Text = "Начать";
-            button_StartNextEnd.Enabled = true;
+            button_StartNextEnd.Enabled = false;
+        }
+
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+            Connection = CreateConn(Connection);
+            if (Connection == null)
+            {
+                timer.Start();
+                Text = Properties.Resources.StartFormName + Properties.Resources.ConnectionPrefix;
+            }
+            else
+            {
+                NeedNewTables(Connection);
+                Text = Properties.Resources.StartFormName;
+                button_StartNextEnd.Enabled = true;
+            }
+            
         }
 
         private void button_StartNextEnd_Click(object sender, EventArgs e)
@@ -76,19 +93,19 @@ namespace RGR_II
                     break;
                 case 1:
                     //AktivniiOtdih
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     SetActiveComponentAndString("Ваше отношение к отдыху в компании:", "Любите отдых в большой компании?", "Любите отдых в маленькой компании?");
                     iteration_step = 2;
                     break;
                 case 2:
                     //OtdihVKompanii
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     SetActiveComponentAndString("Ваше отношение к аршитектуре:","Любите исторические строения?","Любите современные строения?");
                     iteration_step = 5;
                     break;
                 case 3:
                     //Prirodu
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     if (checkBox2.Checked)
                     {
                         flag_1 = true;
@@ -103,25 +120,25 @@ namespace RGR_II
                     break;
                 case 4:
                     //OtdihNaPrirode
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     SetActiveComponentAndString("Ваше отношение к рекам, озерам и океанам:","Вы любите моря?","Вы любите реки?","Вы любите озера?");
                     iteration_step = 10;
                     break;
                 case 5:
                     //Arhitectura
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     SetActiveComponentAndString("Ваше отношение к природе:","Вы любите природу?");
                     iteration_step = 3;
                     break;
                 case 6:
                     //BolshieGoroda
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     SetActiveComponentAndString("Ваше отношение к маленьким городам:","Вы любите провинциальные города?","Вы любите села?");
                     iteration_step = 8;
                     break;
                 case 7:
                     //MalenkieGoroda
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     if (!flag_1)
                     {
                         iteration_step = 4;
@@ -135,19 +152,19 @@ namespace RGR_II
                     break;
                 case 8:
                     //Dostoprimechatelnosti
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     SetActiveComponentAndString("Ваше отношение к достопримечательностям:","Вы любите достопримечательности?");
                     iteration_step = 7;
                     break;
                 case 9:
                     //VoennaaTematika
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     SetActiveComponentAndString("Какое у вас состояние здоровья?","Хорошее","Среднее","Тяжелое");
                     iteration_step = 12;
                     break;
                 case 10:
                     //Reki
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     SetActiveComponentAndString("Ваше отношение к горам:","Вы любите высокие горы?","Вы любите холмы?","Вас интерисуют горы с возможностью подьёма?");
                     iteration_step = 11;
                     break;
@@ -155,33 +172,33 @@ namespace RGR_II
                     //Gori
                     if (checkBox1.Checked || checkBox3.Checked || checkBox5.Checked)
                     {
-                        Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                        Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                         SetActiveComponentAndString("Ваше отношение к военным памятникам культуры:", "Вы любите парки военной техники?", "Хотели бы вы посетить музеи славы?");
                         iteration_step = 9;
                     }
                     break;
                 case 12:
                     //SostoanieZdorovia
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
                     SetActiveComponentAndString("Как вы относитесь к высокой температуре:","Вам нравится температура больше 30 градусов?", "Вам нравится температура от 25 до 30 градусов?");
                     iteration_step = 13;
                     break;
                 case 13:
                     //Temp_Hight
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     SetActiveComponentAndString("Как вы относитесь к средней температуре:", "Вам нравится температура от 15 до 25 градусов?");
                     iteration_step = 15;
                     break;
                 case 14:
                     //Temp_Low
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked);
                     button_StartNextEnd.Enabled = false;
                     GetResultForRules();
                     ////end
                     break;
                 case 15:
                     //Temp_Srednaa
-                    Node = SetNodeParam(Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
+                    Rule.Node = SetNodeParam(Rule.Node, iteration_step, checkBox1.Checked, checkBox2.Checked);
                     SetActiveComponentAndString("Как вы относитесь к низкой температуре:", "Вам нравится температура -10 до 15 градусов?", "Вам нравится температура от -30 до -10 градусов?");
                     iteration_step = 14;
                     break;
@@ -320,16 +337,22 @@ namespace RGR_II
             label3.Text = Label3String;
         }
 
-        private void GetResultForRules()
+        private async void GetResultForRules()
         {
-            bool[] Arr = new bool[17];
-            //label1.Text = GetResultString(DetectRule(Arr, Node));
+            Task<List<string>> computeTask = Rule.CorrectRules(Connection);
+            List<string> result;
+            //label1.Text = GetResultString(DetectRule(Arr, Rule.Node));
+            if (computeTask.IsCompleted)
+                result = await computeTask;
             groupBox1.Visible = false;
             label1.Visible = true;
         }
 
-
-
-        
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+            timer.Stop();
+            StartForm_Load(sender, e);
+        }
     }
 }
