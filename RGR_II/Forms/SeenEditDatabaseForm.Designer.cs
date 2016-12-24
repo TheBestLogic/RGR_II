@@ -30,12 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dBDataSet = new RGR_II.DBDataSet();
-            this.ruleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ruleTableAdapter = new RGR_II.DBDataSetTableAdapters.RuleTableAdapter();
+            this.dBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ruleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -43,26 +40,17 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.dBDataSet;
+            this.dataGridView1.DataSource = this.dBDataSetBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(284, 261);
             this.dataGridView1.TabIndex = 0;
             // 
-            // dBDataSet
+            
+            // dBDataSetBindingSource
             // 
-            this.dBDataSet.DataSetName = "DBDataSet";
-            this.dBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ruleBindingSource
-            // 
-            this.ruleBindingSource.DataMember = "Rule";
-            this.ruleBindingSource.DataSource = this.dBDataSet;
-            // 
-            // ruleTableAdapter
-            // 
-            this.ruleTableAdapter.ClearBeforeFill = true;
+            this.dBDataSetBindingSource.Position = 0;
             // 
             // SeenEditDatabaseForm
             // 
@@ -74,8 +62,7 @@
             this.Text = "SeenEditDatabaseForm";
             this.Load += new System.EventHandler(this.SeenEditDatabaseForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ruleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -83,8 +70,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private DBDataSet dBDataSet;
-        private System.Windows.Forms.BindingSource ruleBindingSource;
-        private DBDataSetTableAdapters.RuleTableAdapter ruleTableAdapter;
+        private System.Windows.Forms.BindingSource dBDataSetBindingSource;
     }
 }

@@ -17,24 +17,24 @@ SELECT
 FROM
     [Rules] R
 LEFT JOIN
-    [AktivniiOtdih] as AO ON (AO.ID = R.ID_FK)
+    [AktivniiOtdih] as AO ON (AO.ID = R.ID)
 LEFT JOIN
-    [OtdihVKompanii] as OvK ON (OvK.ID = R.ID_FK)
+    [OtdihVKompanii] as OvK ON (OvK.ID = R.ID)
 LEFT JOIN
-    [Arhitectura] as A ON (A.ID = R.ID_FK)
+    [Arhitectura] as A ON (A.ID = R.ID)
 LEFT JOIN
-    [BolshieGoroda] as BG ON (BG.ID = R.ID_FK)
+    [BolshieGoroda] as BG ON (BG.ID = R.ID)
 LEFT JOIN
-    [MalenkieGoroda] as MG ON (MG.ID = R.ID_FK)
+    [MalenkieGoroda] as MG ON (MG.ID = R.ID)
 LEFT JOIN
-    [VoennaaTematika] as VT ON (VT.ID = R.ID_FK)
+    [VoennaaTematika] as VT ON (VT.ID = R.ID)
 LEFT JOIN
-    [Reki] as Re ON (Re.ID = R.ID_FK)
+    [Reki] as Re ON (Re.ID = R.ID)
 LEFT JOIN
-    [Gori] as G ON (G.ID = R.ID_FK)
+    [Gori] as G ON (G.ID = R.ID)
 LEFT JOIN
-    [SostoanieZdorovia] as SZ ON (SZ.ID = R.ID_FK)
+    [SostoanieZdorovia] as SZ ON (SZ.ID = R.ID)
 LEFT JOIN
-    [Temp_Hight] as TH ON (TH.ID = R.ID_FK)
+    [Temp_Hight] as TH ON (TH.ID = R.ID)
 LEFT JOIN
-    [Temp_Low] as TL ON (TL.ID = R.ID_FK)
+    [Temp_Low] as TL ON (TL.ID = R.ID)

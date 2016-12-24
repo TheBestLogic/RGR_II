@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="DBDataSet1" targetNamespace="http://tempuri.org/DBDataSet1.xsd" xmlns:mstns="http://tempuri.org/DBDataSet1.xsd" xmlns="http://tempuri.org/DBDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DBDataSet2" targetNamespace="http://tempuri.org/DBDataSet2.xsd" xmlns:mstns="http://tempuri.org/DBDataSet2.xsd" xmlns="http://tempuri.org/DBDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -340,7 +340,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DBDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DBDataSet1" msprop:Generator_UserDSName="DBDataSet1">
+  <xs:element name="DBDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DBDataSet2" msprop:Generator_UserDSName="DBDataSet2">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="AktivniiOtdih" msprop:Generator_TableClassName="AktivniiOtdihDataTable" msprop:Generator_TableVarName="tableAktivniiOtdih" msprop:Generator_TablePropName="AktivniiOtdih" msprop:Generator_RowDeletingName="AktivniiOtdihRowDeleting" msprop:Generator_RowChangingName="AktivniiOtdihRowChanging" msprop:Generator_RowEvHandlerName="AktivniiOtdihRowChangeEventHandler" msprop:Generator_RowDeletedName="AktivniiOtdihRowDeleted" msprop:Generator_UserTableName="AktivniiOtdih" msprop:Generator_RowChangedName="AktivniiOtdihRowChanged" msprop:Generator_RowEvArgName="AktivniiOtdihRowChangeEvent" msprop:Generator_RowClassName="AktivniiOtdihRow">

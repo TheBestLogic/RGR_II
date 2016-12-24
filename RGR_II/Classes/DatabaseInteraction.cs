@@ -9,6 +9,8 @@ using System.Threading;
 using static RGR_II.Classes.ExpertSystemLogic;
 using System.IO;
 using System.Reflection;
+using System.Data;
+
 
 namespace RGR_II.Classes
 {
@@ -108,8 +110,7 @@ namespace RGR_II.Classes
 
         public static int NeedNewTables(SqlConnection Connection)
         {
-            string sqlExpression = "SELECT * FROM Rule";
-            SqlCommand command = new SqlCommand(sqlExpression, Connection);
+            SqlCommand command = new SqlCommand(Properties.Resources.SelectTOPaLL, Connection);
             try
             {
                 Connection.Open();
@@ -571,8 +572,8 @@ namespace RGR_II.Classes
 
         public static List<RULE> SELECTallRules(SqlConnection Connection, bool flag = false, RULE Rule = default(RULE), List<RULE> ListNode = default(List<RULE>))
         {
-            string sqlExpression = null; 
-            SqlCommand command = new SqlCommand(sqlExpression, Connection);
+            string sqlExpression = null;
+            SqlCommand command;
             RULE NodeList = new RULE();
             if (flag)
             {
@@ -585,6 +586,7 @@ namespace RGR_II.Classes
             try
             {
                 Connection.Open();
+                command = new SqlCommand(sqlExpression, Connection);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -630,12 +632,37 @@ namespace RGR_II.Classes
             }
             catch (SqlException se)
             {
-                MessageBox.Show("NeedNewTables - " + "SELECT exeption: " + se.Number.ToString() + "\n" + se.Message);
+                MessageBox.Show("SELECTallRules - " + "SELECT exeption: " + se.Number.ToString() + "\n" + se.Message);
 
                 Connection.Close();
                 CreateTable(Connection);
             }
             return ListNode;
+        }
+
+        public static DataTable SELECTallRulesOnDataTable(SqlConnection Connection)
+        {
+            SqlCommand command;
+            DataTable dt = new DataTable();
+            try
+            {
+                Connection.Open();
+                command = new SqlCommand(Properties.Resources.SelectTOPaLL, Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+            }
+            catch (SqlException se)
+            {
+                MessageBox.Show("SELECTallRulesOnDataTable - " + "SELECT exeption: " + se.Number.ToString() + "\n" + se.Message);
+
+                Connection.Close();
+                CreateTable(Connection);
+            }
+            return dt;
         }
 
         public static List<RULE> UPDATEallRules(SqlConnection Connection, bool flag = false, RULE Rule = default(RULE), List<RULE> ListNode = default(List<RULE>))
