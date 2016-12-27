@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using static RGR_II.Classes.ExpertSystemLogic;
 using System.Data.SqlClient;
 using static RGR_II.Classes.DatabaseInteraction;
+using RGR_II.Forms;
 
 namespace RGR_II
 {
@@ -353,6 +354,15 @@ namespace RGR_II
             timer.Enabled = false;
             timer.Stop();
             StartForm_Load(sender, e);
+        }
+
+        private void buttonAllTables_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            List<RULE> List = SELECTallRules(Connection);
+            SeenEditDatabaseForm _SeenEditDatabaseForm = new SeenEditDatabaseForm(Connection);
+            _SeenEditDatabaseForm.ShowDialog();
+            this.Visible = true;
         }
     }
 }

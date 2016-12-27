@@ -15,26 +15,8 @@ SELECT TOP 1000
 	TL.FF AS 'TL: -10 C - +15 C', TL.FS AS 'TL: -30 C - -10 C',
 	R.TempSred AS 'R: 15 C - 25 C'
 FROM
-    Rules R
-LEFT JOIN
-    AktivniiOtdih as AO ON (AO.ID = R.ID)
-LEFT JOIN
-    OtdihVKompanii as OvK ON (OvK.ID = R.ID)
-LEFT JOIN
-    Arhitectura as A ON (A.ID = R.ID)
-LEFT JOIN
-    BolshieGoroda as BG ON (BG.ID = R.ID)
-LEFT JOIN
-    MalenkieGoroda as MG ON (MG.ID = R.ID)
-LEFT JOIN
-    VoennaaTematika as VT ON (VT.ID = R.ID)
-LEFT JOIN
-    Reki as Re ON (Re.ID = R.ID)
-LEFT JOIN
-    Gori as G ON (G.ID = R.ID)
-LEFT JOIN
-    SostoanieZdorovia as SZ ON (SZ.ID = R.ID)
-LEFT JOIN
-    Temp_Hight as TH ON (TH.ID = R.ID)
-LEFT JOIN
-    Temp_Low as TL ON (TL.ID = R.ID)
+    Rules R, AktivniiOtdih AO, OtdihVKompanii OvK, Arhitectura A, BolshieGoroda BG, Temp_Low TL,
+	MalenkieGoroda MG, VoennaaTematika VT, Reki Re, Gori G, SostoanieZdorovia SZ, Temp_Hight TH
+WHERE 
+ AO.ID = R.ID AND OvK.ID = R.ID AND A.ID = R.ID AND BG.ID = R.ID AND MG.ID = R.ID AND VT.ID = R.ID
+ AND Re.ID = R.ID AND G.ID = R.ID AND SZ.ID = R.ID AND TH.ID = R.ID AND TL.ID = R.ID

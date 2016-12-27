@@ -39,12 +39,20 @@ namespace RGR_II.Classes
                 }
             }
             Connection.Close();
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
             return Connection;
         }
 
         public static int LostConn(SqlConnection Connection)
         {
             Connection.Close();
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
             Connection.Dispose();
             return 0;
         }
@@ -69,6 +77,10 @@ namespace RGR_II.Classes
             Connection.Close();
             Thread.Sleep(5000);
             MessageBox.Show("Database creation end");
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
         }
 
         private static string GetConnectionString()
@@ -88,7 +100,7 @@ namespace RGR_II.Classes
 
         public static string GetCreateTableString()
         {
-            return Properties.Resources.Criate_Tables; ;
+            return Properties.Resources.Criate_Tables; 
         }
 
         public static void CreateTable(SqlConnection Connection)
@@ -106,6 +118,10 @@ namespace RGR_II.Classes
                 Connection.Close();
                 return;
             }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
         }
 
         public static int NeedNewTables(SqlConnection Connection)
@@ -115,14 +131,12 @@ namespace RGR_II.Classes
             {
                 Connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                if (!reader.HasRows)
                 {
-                    if (!reader.HasRows)
-                    {
-                        Connection.Close();
-                        CreateTable(Connection);
-                    }
+                   DefaultRules(Connection);
+                   Connection.Close();
+                   //CreateTable(Connection);
                 }
-
             }
             catch (SqlException se)
             {
@@ -130,6 +144,11 @@ namespace RGR_II.Classes
 
                 Connection.Close();
                 CreateTable(Connection);
+            }
+            Connection.Close();
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
             }
             return 0;
         }
@@ -310,6 +329,7 @@ namespace RGR_II.Classes
             {
                 Str += " );";
             }
+
             return Str;
         }
 
@@ -387,6 +407,10 @@ namespace RGR_II.Classes
                     $"FS={ Rule.Node.Temp_Low.FS} WHERE ID ={Rule.ID};";
                 Strin[11] = $"UPDATE VoennaaTematika SET FF={Rule.Node.VoennaaTematika.FF}, " +
                     $"FS={ Rule.Node.VoennaaTematika.FS} WHERE ID ={Rule.ID};";
+            }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
             }
             return Strin;
         }
@@ -472,6 +496,10 @@ namespace RGR_II.Classes
                 MessageBox.Show("DELETEdataFromTable - " + "DELETE exeption: " + se.Number.ToString() + "\n" + se.Message);
                 Connection.Close();
             }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
         }
 
         public static RULE GetNamesIDs(SqlConnection Connection,int flag = 0, int ID = 1, string Name = null)
@@ -498,6 +526,10 @@ namespace RGR_II.Classes
                 MessageBox.Show("GetNamesIDs - " + "SELECT exeption: " + se.Number.ToString() + "\n" + se.Message);
                 Connection.Close();
             }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
             return R;
         }
 
@@ -519,6 +551,7 @@ namespace RGR_II.Classes
                 Ex += "Done.";
                 command = new SqlCommand(sqlExpression[1], Connection);
                 Ex += "\n\t" + sqlExpression[1] + "try... ";
+                reader.Close();
                 reader = command.ExecuteReader();
                 Ex += "Done.";
                 if (reader.HasRows)
@@ -530,6 +563,8 @@ namespace RGR_II.Classes
                         Ex += $"\n\t\t\t\tHasID: {ID}";
                     }
                 }
+                reader.Close();
+                Connection.Close();
                 sqlExpression[2] = "INSERT INTO AktivniiOtdih(ID, FF, FS, FT) " +
                 $"values({ID}, {Rule.Node.AktivniiOtdih.FF}, {Rule.Node.AktivniiOtdih.FS}, {Rule.Node.AktivniiOtdih.FT})";
                 sqlExpression[3] = "INSERT INTO Arhitectura(ID, FF, FS)  " +
@@ -554,9 +589,12 @@ namespace RGR_II.Classes
                     $"values({ID}, {Rule.Node.VoennaaTematika.FF},{Rule.Node.VoennaaTematika.FS})";
                 for(int i = 2; i < 13; ++i)
                 {
-                    command = new SqlCommand(sqlExpression[2], Connection);
-                    Ex += "\n\t" + sqlExpression[2] + "try... ";
+                    command = new SqlCommand(sqlExpression[i], Connection);
+                    Ex += "\n\t" + sqlExpression[i] + "try... ";
+                    Connection.Open();
                     reader = command.ExecuteReader();
+                    reader.Close();
+                    Connection.Close();
                     Ex += "Done.";
                 }
             }
@@ -568,20 +606,26 @@ namespace RGR_II.Classes
                 CreateTable(Connection);
             }
             Connection.Close();
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
         }
 
-        public static List<RULE> SELECTallRules(SqlConnection Connection, bool flag = false, RULE Rule = default(RULE), List<RULE> ListNode = default(List<RULE>))
+        public static List<RULE> SELECTallRules(SqlConnection Connection, bool flag = false, RULE Rule = default(RULE), List<RULE> ListNode = null)
         {
             string sqlExpression = null;
             SqlCommand command;
             RULE NodeList = new RULE();
+            List<RULE> List = new List<RULE>();
             if (flag)
             {
                 sqlExpression = CreateSELECTString(Rule);
             }
             else
             {
-                sqlExpression = Properties.Resources.SelectTOPaLL;
+                sqlExpression = Properties.Resources.SelectAllString;
+                //sqlExpression = Properties.Resources.SelectAllAlternative;
             }
             try
             {
@@ -592,7 +636,6 @@ namespace RGR_II.Classes
                 {
                     while (reader.Read())
                     {
-                        ListNode.Add(NodeList);
                         NodeList.ID = reader.GetInt32(0);
                         NodeList.Name = reader.GetString(1);
                         NodeList.Node.AktivniiOtdih.FF = reader.GetByte(2);
@@ -626,6 +669,7 @@ namespace RGR_II.Classes
                         NodeList.Node.Temp_Low.FF = reader.GetByte(30);
                         NodeList.Node.Temp_Low.FS = reader.GetByte(31);
                         NodeList.Node.Temp_Srednaa = reader.GetByte(32);
+                        List.Add(NodeList);
                     }
                 }
 
@@ -637,17 +681,25 @@ namespace RGR_II.Classes
                 Connection.Close();
                 CreateTable(Connection);
             }
-            return ListNode;
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
+            if(ListNode != null)
+            {
+                ListNode = List;
+            }
+            return List;
         }
 
         public static DataTable SELECTallRulesOnDataTable(SqlConnection Connection)
         {
-            SqlCommand command;
             DataTable dt = new DataTable();
+            SqlCommand command;
             try
             {
                 Connection.Open();
-                command = new SqlCommand(Properties.Resources.SelectTOPaLL, Connection);
+                command = new SqlCommand(Properties.Resources.SelectAllString, Connection);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -661,6 +713,10 @@ namespace RGR_II.Classes
 
                 Connection.Close();
                 CreateTable(Connection);
+            }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
             }
             return dt;
         }
@@ -697,6 +753,10 @@ namespace RGR_II.Classes
 
                 Connection.Close();
                 CreateTable(Connection);
+            }
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
             }
             return ListNode;
         }

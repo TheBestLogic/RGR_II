@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using static RGR_II.Classes.DatabaseInteraction;
+using System.Data;
 
 namespace RGR_II.Classes
 {
@@ -314,6 +315,43 @@ namespace RGR_II.Classes
                    return RuleNameStrings;
                });
             }
+
+            public void NewRule(string _Name = null, byte AOff = 0, byte AOfs = 0, byte AOft = 0, byte OvKff = 0, byte OvKfs = 0, byte P = 0, byte OnP = 0, byte Aff = 0, byte Afs = 0, byte BGff = 0, byte BGfs = 0, byte BGft = 0, byte MGff = 0, byte MGfs = 0, byte D = 0, byte VTff = 0, byte VTfs = 0, byte Rff = 0, byte Rfs = 0, byte Rft = 0, byte Gff = 0, byte Gfs = 0, byte Gft = 0, byte SZff = 0, byte SZfs = 0, byte SZft = 0, byte THff = 0, byte THfs = 0, byte TLff = 0, byte TLfs = 0, byte TS = 0)
+            {
+                ID = 0;
+                Name = _Name;
+                Node.AktivniiOtdih.FF = AOff;
+                Node.AktivniiOtdih.FS = AOfs;
+                Node.AktivniiOtdih.FT = AOft;
+                Node.OtdihVKompanii.FF = OvKff;
+                Node.OtdihVKompanii.FS = OvKfs;
+                Node.Prirodu = P;
+                Node.OtdihNaPrirode = OnP;
+                Node.Arhitectura.FF = Aff;
+                Node.Arhitectura.FS = Afs;
+                Node.BolshieGoroda.FF = BGff;
+                Node.BolshieGoroda.FS = BGfs;
+                Node.BolshieGoroda.FT = BGft;
+                Node.MalenkieGoroda.FF = MGff;
+                Node.MalenkieGoroda.FS = MGfs;
+                Node.Dostoprimechatelnosti = D;
+                Node.VoennaaTematika.FF = VTff;
+                Node.VoennaaTematika.FS = VTfs;
+                Node.Reki.FF = Rff;
+                Node.Reki.FS = Rfs;
+                Node.Reki.FT = Rft;
+                Node.Gori.FF = Gff;
+                Node.Gori.FS = Gfs;
+                Node.Gori.FT = Gft;
+                Node.SostoanieZdorovia.FF = SZff;
+                Node.SostoanieZdorovia.FS = SZfs;
+                Node.SostoanieZdorovia.FT = SZft;
+                Node.Temp_Hight.FF = THff;
+                Node.Temp_Hight.FS = THfs;
+                Node.Temp_Low.FF = TLff;
+                Node.Temp_Low.FS = TLfs;
+                Node.Temp_Srednaa = TS;
+            }
         }
 
       
@@ -453,6 +491,51 @@ namespace RGR_II.Classes
             return Node;
         }
 
-        
+        public static void DefaultRules(SqlConnection Connection)
+        {
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
+            RULE R = new RULE();
+            R.NewRule("Sanatorii v gorah", SZft: 1, Gff: 1, Gfs: 1, Gft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Sanatorii vozle vodi", SZft: 1, Rff: 1, Rfs: 1, Rft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Sanatorii", SZft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Otdih v palatkah", THff: 2, THfs: 2, SZfs: 1, SZff: 1, P: 1, OnP: 1, OvKff: 1, OvKfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Voennii muzei", VTff: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Park slavi", VTfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Gornolijnii kurort", Gff: 1, Gfs: 1, Gft: 1, SZfs: 1, SZff: 1, TLff: 1, TLfs: 1, AOff: 1, AOfs: 1, AOft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Poezdka na more", Rff: 1, AOfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Poezdka na ozero", Rfs: 1, AOfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Poezdka na ozero", Rft: 1, AOfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Daiving", SZff: 1, Rff: 1, Rfs: 1, Rft: 1, AOft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Alpinizm", SZff: 1, Gff: 1, Gfs: 1, Gft: 1, AOff: 1, AOft: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Ekskursia v gorod", OvKff: 1, OvKfs: 1, Aff: 1, Afs: 1, BGff: 1, BGfs: 1, BGft: 1, MGff: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Ekskursia v selo", Aff: 1, Afs: 1, MGfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Poezdka v mesto s istoricheskim naslediem", D: 1, Aff: 1, Afs: 1, P: 1, BGff: 1, BGfs: 1, BGft: 1, MGff: 1, MGfs: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Zapovedhik", OnP: 1, P: 1, D: 1);
+            DoINSERTS(Connection, R);
+            R.NewRule("Park", BGff: 1, BGfs: 1, BGft: 1, MGff: 1, MGfs: 1, OnP: 1, P: 1);
+            DoINSERTS(Connection, R);
+            if (Connection.State != ConnectionState.Closed)
+            {
+                Connection.Close();
+            }
+        }
     }
 }

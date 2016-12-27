@@ -43,6 +43,7 @@
             this.button_Clear = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.buttonAllTables = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -188,11 +189,22 @@
             this.timer.Interval = 10000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // buttonAllTables
+            // 
+            this.buttonAllTables.Location = new System.Drawing.Point(465, 13);
+            this.buttonAllTables.Name = "buttonAllTables";
+            this.buttonAllTables.Size = new System.Drawing.Size(75, 23);
+            this.buttonAllTables.TabIndex = 6;
+            this.buttonAllTables.Text = "buttonAllTables";
+            this.buttonAllTables.UseVisualStyleBackColor = true;
+            this.buttonAllTables.Click += new System.EventHandler(this.buttonAllTables_Click);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 276);
+            this.ClientSize = new System.Drawing.Size(542, 276);
+            this.Controls.Add(this.buttonAllTables);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.button_StartNextEnd);
@@ -224,6 +236,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button buttonAllTables;
     }
 }
 
