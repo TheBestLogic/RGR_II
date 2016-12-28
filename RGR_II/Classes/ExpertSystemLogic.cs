@@ -288,6 +288,13 @@ namespace RGR_II.Classes
                 Node.Copy(R.Node);
             }
 
+            public void Clear()
+            {
+                ID = 0;
+                Name = null;
+                Node.Clear();
+            }
+
             public Task<List<string>> CorrectRules(SqlConnection Connection)
             {
                 List<RULE> ListNode = new List<RULE>();

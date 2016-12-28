@@ -1,2 +1,40 @@
-﻿INSERT INTO Rules(ID,Name)  values(1001,'name')
-SELECT TOP 1 ID FROM Rules WHERE Name='name' ORDER BY ID DESC
+﻿SELECT TOP 1000
+	R.ID, R.Name AS 'R:Resting-place',
+    AO.FF AS 'AO:Prefer active rest', AO.FS AS 'AO:Change of scenery', AO.FT AS 'AO:Extreme rest',
+	OvK.FF AS 'OvK:Big company', OvK.FS AS 'OvK:Small company',
+	R.Priroda AS 'R:Nature', R.OtdihNaPrirode AS 'R:Rest on nature',
+	A.FF AS 'A:Historical', A.FS AS 'A:Modern',
+	BG.FF AS 'BG:Industrials', BG.FS AS 'BG:Capitals', BG.FT AS 'BG:Regionals',
+	MG.FF AS 'MG:Provincials', MG.FS AS 'MG:Villages', 
+	R.Dostoprimech AS 'R:Attractions',
+	VT.FF AS 'VT:Military museum ', VT.FS AS 'VT:Glory parks',
+	Re.FF AS 'Re:Seas', Re.FS AS 'Re:Rivers', Re.FT AS 'Re:Lakes',
+	G.FF AS 'G:High mountains', G.FS AS 'G:Hills', G.FT AS 'G:Liftables',
+	SZ.FF AS 'SZ:Strong', SZ.FS AS 'SZ:Normal', SZ.FT AS 'SZ:Bad',
+	TH.FF AS 'TH: +30 C', TH.FS AS 'TH: +25 C -+30 C',
+	TL.FF AS 'TL: -10 C - +15 C', TL.FS AS 'TL: -30 C - -10 C',
+	R.TempSred AS 'R: 15 C - 25 C'
+FROM
+    Rules R
+LEFT JOIN
+    AktivniiOtdih as AO ON (AO.ID = R.ID)
+LEFT JOIN
+    OtdihVKompanii as OvK ON (OvK.ID = R.ID)
+LEFT JOIN
+    Arhitectura as A ON (A.ID = R.ID)
+LEFT JOIN
+    BolshieGoroda as BG ON (BG.ID = R.ID)
+LEFT JOIN
+    MalenkieGoroda as MG ON (MG.ID = R.ID)
+LEFT JOIN
+    VoennaaTematika as VT ON (VT.ID = R.ID)
+LEFT JOIN
+    Reki as Re ON (Re.ID = R.ID)
+LEFT JOIN
+    Gori as G ON (G.ID = R.ID)
+LEFT JOIN
+    SostoanieZdorovia as SZ ON (SZ.ID = R.ID)
+LEFT JOIN
+    Temp_Hight as TH ON (TH.ID = R.ID)
+LEFT JOIN
+    Temp_Low as TL ON (TL.ID = R.ID)
